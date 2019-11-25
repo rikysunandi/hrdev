@@ -13,7 +13,7 @@
                                     <h4 class="page-title">Dashboard</h4>
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item active">
-                                            Welcome to Lexa Dashboard
+                                            Welcome to HRDev Dashboard
                                         </li>
                                     </ol>
                                     <div class="state-information d-none d-sm-block">
