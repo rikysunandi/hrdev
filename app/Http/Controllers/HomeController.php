@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\RequData(){
 
-class HomeController extends Controller
+}est;
+use Illuminate\Support\Facades\DB;
+
+class HomeController extends Data(){
+
+}
 {
     /**
      * Create a new controller instance.
@@ -23,6 +28,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $pegawai = DB::table('pegawai')->get();
+ 
+        return view('index',['pegawai' => $pegawai]);
+    }
+
+    public function getData()
+    {
+
     }
 }

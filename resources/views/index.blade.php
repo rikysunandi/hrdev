@@ -36,11 +36,11 @@
                                     <div class="card mini-stat bg-primary">
                                         <div class="card-body mini-stat-img">
                                             <div class="mini-stat-icon">
-                                                <i class="mdi mdi-cube-outline float-right"></i>
+                                                <i class="mdi mdi-account float-right"></i>
                                             </div>
                                             <div class="text-white">
-                                                <h6 class="text-uppercase mb-3">Orders</h6>
-                                                <h4 class="mb-4">1,587</h4>
+                                                <h6 class="text-uppercase mb-3">Pegawai</h6>
+                                                <h4 class="mb-4">{{ $pegawai->count() }}</h4>
                                                 <span class="badge badge-info"> +11% </span> <span class="ml-2">From previous period</span>
                                             </div>
                                         </div>
