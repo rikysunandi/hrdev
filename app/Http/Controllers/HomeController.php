@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RequData(){
-
-}est;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class HomeController extends Data(){
-
-}
+class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -33,8 +29,4 @@ class HomeController extends Data(){
         return view('index',['pegawai' => $pegawai]);
     }
 
-    public function getData()
-    {
-
-    }
 }
