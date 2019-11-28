@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <!-- end row -->
-
+                        {{-- {{ dd(get_defined_vars()['__data']) }} --}}
                         <div class="row">
                                 <div class="col-xl-3 col-md-6">
                                     <div class="card mini-stat bg-primary">
@@ -40,7 +40,7 @@
                                             </div>
                                             <div class="text-white">
                                                 <h6 class="text-uppercase mb-3">Pegawai</h6>
-                                                <h4 class="mb-4">{{ $pegawai->count() }}</h4>
+                                                <h4 id="jml_pegawai" class="mb-4">0</h4>
                                                 <span class="badge badge-info"> +11% </span> <span class="ml-2">From previous period</span>
                                             </div>
                                         </div>
@@ -53,8 +53,8 @@
                                                 <i class="mdi mdi-buffer float-right"></i>
                                             </div>
                                             <div class="text-white">
-                                                <h6 class="text-uppercase mb-3">Revenue</h6>
-                                                <h4 class="mb-4">$46,782</h4>
+                                                <h6 class="text-uppercase mb-3">Pensiun</h6>
+                                                <h4 id="jml_pensiun" class="mb-4">0</h4>
                                                 <span class="badge badge-danger"> -29% </span> <span class="ml-2">From previous period</span>
                                             </div>
                                         </div>
@@ -67,8 +67,8 @@
                                                 <i class="mdi mdi-tag-text-outline float-right"></i>
                                             </div>
                                             <div class="text-white">
-                                                <h6 class="text-uppercase mb-3">Average Price</h6>
-                                                <h4 class="mb-4">$15.9</h4>
+                                                <h6 class="text-uppercase mb-3">Rasio FTK</h6>
+                                                <h4 id="persentase_ftk" class="mb-4">0</h4>
                                                 <span class="badge badge-warning"> 0% </span> <span class="ml-2">From previous period</span>
                                             </div>
                                         </div>
@@ -81,8 +81,8 @@
                                                 <i class="mdi mdi-briefcase-check float-right"></i>
                                             </div>
                                             <div class="text-white">
-                                                <h6 class="text-uppercase mb-3">Product Sold</h6>
-                                                <h4 class="mb-4">1890</h4>
+                                                <h6 class="text-uppercase mb-3">Product</h6>
+                                                <h4 class="mb-4">0</h4>
                                                 <span class="badge badge-info"> +89% </span> <span class="ml-2">From previous period</span>
                                             </div>
                                         </div>
@@ -90,35 +90,15 @@
                                 </div>
                             </div>
                             <!-- end row -->
-            
+
                             <div class="row">
-            
-                                <div class="col-xl-3">
-                                    <div class="card m-b-20">
-                                        <div class="card-body">
-                                            <h4 class="mt-0 header-title">Monthly Earnings</h4>
-            
-                                            <div class="row text-center m-t-20">
-                                                <div class="col-6">
-                                                    <h5 class="">$56241</h5>
-                                                    <p class="text-muted font-14">Marketplace</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <h5 class="">$23651</h5>
-                                                    <p class="text-muted font-14">Total Income</p>
-                                                </div>
-                                            </div>
-            
-                                            <div id="morris-donut-example" class="dashboard-charts morris-charts"></div>
-                                        </div>
-                                    </div>
-                                </div>
-            
+
+                                {{--
                                 <div class="col-xl-6">
                                     <div class="card m-b-20">
                                         <div class="card-body">
                                             <h4 class="mt-0 header-title">Email Sent</h4>
-            
+
                                             <div class="row text-center m-t-20">
                                                 <div class="col-4">
                                                     <h5 class="">$ 89425</h5>
@@ -133,42 +113,80 @@
                                                     <p class="text-muted font-14">Last Month</p>
                                                 </div>
                                             </div>
-            
+
                                             <div id="morris-area-example" class="dashboard-charts morris-charts"></div>
                                         </div>
                                     </div>
-                                </div>
-            
-                                <div class="col-xl-3">
+                                </div> --}}
+
+                                <div class="col-xl-9">
                                     <div class="card m-b-20">
                                         <div class="card-body">
-                                            <h4 class="mt-0 header-title">Monthly Earnings</h4>
-            
-                                            <div class="row text-center m-t-20">
-                                                <div class="col-6">
-                                                    <h5 class="">$ 2548</h5>
-                                                    <p class="text-muted font-14">Marketplace</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <h5 class="">$ 6985</h5>
-                                                    <p class="text-muted font-14">Total Income</p>
+                                            <h4 class="mt-0 m-b-10 header-title">Demografi Pegawai per Unit</h4>
+
+                                            <div class="row text-center m-0 m-t-20">
+                                                <div id="opsi_demografi" class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                    <label class="btn btn-primary active">
+                                                        <input type="radio" name="opsi_demografi" value="gender" checked> Gender
+                                                    </label>
+                                                    <label class="btn btn-primary">
+                                                        <input type="radio" name="opsi_demografi" value="grade"> Grade
+                                                    </label>
+                                                    <label class="btn btn-primary">
+                                                        <input type="radio" name="opsi_demografi" value="generasi"> Generasi
+                                                    </label>
                                                 </div>
                                             </div>
-            
+
+                                            <div id="legenda" class="row text-center m-t-20">
+                                                <div class="col-6">
+                                                    <h5 id="jml_laki_laki" class=""></h5>
+                                                    <p class="text-muted font-14">
+                                                    <span class="badge badge-info">&nbsp;&nbsp;</span> Laki-laki</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h5 id="jml_perempuan" class=""></h5>
+                                                    <p class="text-muted font-14">
+                                                    <span class="badge badge-primary">&nbsp;&nbsp;</span> Perempuan</p>
+                                                </div>
+                                            </div>
+
                                             <div id="morris-bar-stacked" class="dashboard-charts morris-charts"></div>
                                         </div>
                                     </div>
                                 </div>
-            
+
+                                <div class="col-xl-3">
+                                    <div class="card m-b-20">
+                                        <div class="card-body">
+                                            <h4 class="mt-0 header-title">Demografi Pegawai</h4>
+
+                                            <div class="row text-center m-t-20">
+                                                {{-- <div class="col-6">
+                                                    <h5 id="jml_laki_laki" class=""></h5>
+                                                    <p class="text-muted font-14">Laki-laki</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h5 id="jml_perempuan" class=""></h5>
+                                                    <p class="text-muted font-14">Perempuan</p>
+                                                </div> --}}
+
+                                            </div>
+
+                                            <div id="morris-donut-example" class="dashboard-charts morris-charts"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                             <!-- end row -->
-            
+
                             <div class="row">
-                                
+
                                 <div class="col-xl-4 col-lg-6">
                                     <div class="card m-b-20">
                                         <div class="card-body">
-                                            <h4 class="mt-0 header-title mb-3">Inbox</h4>
+                                            <h4 class="mt-0 header-title mb-3">Mutasi Terbaru</h4>
                                             <div class="inbox-wid">
                                                 <a href="#" class="text-dark">
                                                     <div class="inbox-item">
@@ -210,7 +228,7 @@
                                                         <p class="inbox-item-date text-muted">11:47 AM</p>
                                                     </div>
                                                 </a>
-            
+
                                                 <a href="#" class="text-dark">
                                                     <div class="inbox-item">
                                                         <div class="inbox-item-img float-left mr-3"><img src="{{ URL::asset('assets/images/users/user-6.jpg')}}" class="thumb-md rounded-circle" alt=""></div>
@@ -219,17 +237,17 @@
                                                         <p class="inbox-item-date text-muted">10:12 AM</p>
                                                     </div>
                                                 </a>
-                                                
-                                            </div>  
+
+                                            </div>
                                         </div>
                                     </div>
-            
+
                                 </div>
                                 <div class="col-xl-4 col-lg-6">
                                     <div class="card m-b-20">
                                         <div class="card-body">
                                             <h4 class="mt-0 header-title mb-4">Recent Activity Feed</h4>
-            
+
                                             <ol class="activity-feed mb-0">
                                                 <li class="feed-item">
                                                     <div class="feed-item-list">
@@ -256,13 +274,13 @@
                                                     </div>
                                                 </li>
                                             </ol>
-            
+
                                             <div class="text-center">
                                                 <a href="#" class="btn btn-sm btn-primary">Load More</a>
                                             </div>
                                         </div>
                                     </div>
-            
+
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="card widget-user m-b-20">
@@ -295,7 +313,7 @@
                                             </div>
                                         </div>
                                     </div>
-            
+
                                 </div>
                             </div>
                             <!-- end row -->
@@ -304,10 +322,10 @@
                                     <div class="card m-b-20">
                                         <div class="card-body">
                                             <h4 class="mt-0 m-b-30 header-title">Latest Transactions</h4>
-            
+
                                             <div class="table-responsive">
                                                 <table class="table table-vertical">
-            
+
                                                     <tbody>
                                                     <tr>
                                                         <td>
@@ -327,7 +345,7 @@
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
                                                         </td>
                                                     </tr>
-            
+
                                                     <tr>
                                                         <td>
                                                             <img src="{{ URL::asset('assets/images/users/user-3.jpg')}}" alt="user-image" class="thumb-sm rounded-circle mr-2"/>
@@ -346,7 +364,7 @@
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
                                                         </td>
                                                     </tr>
-            
+
                                                     <tr>
                                                         <td>
                                                             <img src="{{ URL::asset('assets/images/users/user-4.jpg')}}" alt="user-image" class="thumb-sm rounded-circle mr-2"/>
@@ -365,7 +383,7 @@
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
                                                         </td>
                                                     </tr>
-            
+
                                                     <tr>
                                                         <td>
                                                             <img src="{{ URL::asset('assets/images/users/user-5.jpg')}}" alt="user-image" class="thumb-sm rounded-circle mr-2"/>
@@ -384,7 +402,7 @@
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
                                                         </td>
                                                     </tr>
-            
+
                                                     <tr>
                                                         <td>
                                                             <img src="{{ URL::asset('assets/images/users/user-6.jpg')}}" alt="user-image" class="thumb-sm rounded-circle mr-2"/>
@@ -403,22 +421,22 @@
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
                                                         </td>
                                                     </tr>
-            
+
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-            
+
                                 <div class="col-xl-6">
                                     <div class="card m-b-20">
                                         <div class="card-body">
                                             <h4 class="mt-0 m-b-30 header-title">Latest Orders</h4>
-            
+
                                             <div class="table-responsive">
                                                 <table class="table table-vertical mb-1">
-            
+
                                                     <tbody>
                                                     <tr>
                                                         <td>#12354781</td>
@@ -437,7 +455,7 @@
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
                                                         </td>
                                                     </tr>
-            
+
                                                     <tr>
                                                         <td>#52140300</td>
                                                         <td>
@@ -455,7 +473,7 @@
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
                                                         </td>
                                                     </tr>
-            
+
                                                     <tr>
                                                         <td>#96254137</td>
                                                         <td>
@@ -473,7 +491,7 @@
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
                                                         </td>
                                                     </tr>
-            
+
                                                     <tr>
                                                         <td>#12365474</td>
                                                         <td>
@@ -491,7 +509,7 @@
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
                                                         </td>
                                                     </tr>
-            
+
                                                     <tr>
                                                         <td>#85214796</td>
                                                         <td>
@@ -526,7 +544,7 @@
                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
                                                         </td>
                                                     </tr>
-            
+
                                                     </tbody>
                                                 </table>
                                             </div>

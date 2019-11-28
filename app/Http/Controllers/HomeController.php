@@ -24,9 +24,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pegawai = DB::table('pegawai')->get();
- 
-        return view('index',['pegawai' => $pegawai]);
+        // $pegawai = DB::table('pegawai')->get();
+
+        return view('index');
+    }
+
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getDashboardData()
+    {
+        $summary = DB::select('call sp_dashboard_get_data("SYSTEM")');
+        $rekap_per_unit = DB::select('select * from vw_demografi_unit');
+
+        return response()->json([$summary[0], $rekap_per_unit]);
     }
 
 }

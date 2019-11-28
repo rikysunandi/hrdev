@@ -17,4 +17,5 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
+Route::get('/dashboard/get_data', 'HomeController@getDashboardData');
 Route::get('{any}', 'LexaController@index');
