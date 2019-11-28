@@ -18,4 +18,6 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 Route::get('/dashboard/get_data', 'HomeController@getDashboardData');
+Route::get('/dashboard/get_mutasi_terbaru', 'HomeController@getMutasiTebaru');
+Route::get('/dashboard/get_pensiun_terbaru', 'HomeController@getPensiunTebaru');
 Route::get('{any}', 'LexaController@index');

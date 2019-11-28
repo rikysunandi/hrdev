@@ -4,6 +4,7 @@
         <script src="{{ URL::asset('assets/js/metisMenu.min.js')}}"></script>
         <script src="{{ URL::asset('assets/js/jquery.slimscroll.js')}}"></script>
         <script src="{{ URL::asset('assets/js/waves.min.js')}}"></script>
+        <script src="{{ URL::asset('assets/js/jquery.blockUI.js')}}"></script>
 
         <script src="{{ URL::asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
 

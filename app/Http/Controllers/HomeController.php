@@ -43,4 +43,16 @@ class HomeController extends Controller
         return response()->json([$summary[0], $rekap_per_unit]);
     }
 
+    public function getMutasiTebaru(){
+        $newest_mutasi = DB::select('select * from vw_newest_mutasi');
+        return response()->json($newest_mutasi);
+
+    }
+
+    public function getPensiunTebaru(){
+        $newest_pensiun = DB::select('select * from vw_newest_pensiun');
+        return response()->json($newest_pensiun);
+
+    }
+
 }

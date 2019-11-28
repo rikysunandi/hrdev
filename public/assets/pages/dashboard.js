@@ -77,6 +77,9 @@
     Dashboard.prototype.init = function() {
         var dashboard = this;
 
+        $('div#stats .card').block({ message: null }); 
+        $('div#demografi .card').block({ message: null }); 
+
         $.getJSON('dashboard/get_data', function(data){
 
             var summary = data[0];
@@ -117,6 +120,9 @@
             });
 
             dashboard.createStackedChart('morris-bar-stacked', dashboard.dataGender, 'y', ['a', 'b'], ['Laki-laki', 'Perempuan'], ['#7a6fbe','#3eb7ba']);
+
+            $('div#stats .card').unblock(); 
+            $('div#demografi .card').unblock(); 
 
         });
         // //creating area chart
@@ -273,6 +279,46 @@ function($) {
 
             $.Dashboard.createDonutChart('morris-donut-example', $.Dashboard.sumGenerasi, ['#7a6fbe','#3eb7ba', '#f5b225', '#58db83', '#ec536c']);
         }
+    });
+
+    $('div#mutasi').block({ message: null });
+    $('div#mutasi .inbox-wid').empty();
+    $.getJSON('dashboard/get_mutasi_terbaru', function(data){
+        $.each(data, function(k,v){
+            console.log(v);
+            $('div#mutasi .inbox-wid').append( `
+                <a href="#" class="text-dark">
+                    <div class="inbox-item">
+                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/users/user-1.jpg" class="thumb-md rounded-circle" alt=""></div>
+                        <h6 class="inbox-item-author mt-0 mb-1">`+v.personnel_number+`</h6>
+                        <p class="inbox-item-text text-muted mb-0">`+v.nama_panjang_posisi+' pada '+v.personnel_subarea+`</p>
+                        <p class="inbox-item-date text-muted">`+v.start_date+`</p>
+                    </div>
+                </a>
+            `);
+        });
+
+        $('div#mutasi').unblock();
+    });
+
+    $('div#pensiun').block({ message: null });
+    $('div#pensiun .inbox-wid').empty();
+    $.getJSON('dashboard/get_pensiun_terbaru', function(data){
+        $.each(data, function(k,v){
+            console.log(v);
+            $('div#pensiun .inbox-wid').append( `
+                <a href="#" class="text-dark">
+                    <div class="inbox-item">
+                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/users/user-1.jpg" class="thumb-md rounded-circle" alt=""></div>
+                        <h6 class="inbox-item-author mt-0 mb-1">`+v.personnel_number+`</h6>
+                        <p class="inbox-item-text text-muted mb-0">`+v.personnel_subarea+`</p>
+                        <p class="inbox-item-date text-muted">`+v.start_date+`</p>
+                    </div>
+                </a>
+            `);
+        });
+
+        $('div#pensiun').unblock();
     });
 
 }(window.jQuery);
