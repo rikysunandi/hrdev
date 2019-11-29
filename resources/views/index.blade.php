@@ -19,11 +19,11 @@
                                     <div class="state-information d-none d-sm-block">
                                         <div class="state-graph">
                                             <div id="header-chart-1"></div>
-                                            <div class="info">Balance $ 2,317</div>
+                                            <div class="info">Dummy 1</div>
                                         </div>
                                         <div class="state-graph">
                                             <div id="header-chart-2"></div>
-                                            <div class="info">Item Sold 1230</div>
+                                            <div class="info">Dummy 2</div>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
                                 <div class="card mini-stat bg-primary">
                                     <div class="card-body mini-stat-img">
                                         <div class="mini-stat-icon">
-                                            <i class="mdi mdi-buffer float-right"></i>
+                                            <i class="mdi mdi-human-handsup float-right"></i>
                                         </div>
                                         <div class="text-white">
                                             <h6 class="text-uppercase mb-3">Pensiun</h6>
@@ -64,7 +64,7 @@
                                 <div class="card mini-stat bg-primary">
                                     <div class="card-body mini-stat-img">
                                         <div class="mini-stat-icon">
-                                            <i class="mdi mdi-tag-text-outline float-right"></i>
+                                            <i class="mdi mdi-puzzle float-right"></i>
                                         </div>
                                         <div class="text-white">
                                             <h6 class="text-uppercase mb-3">Rasio FTK</h6>
@@ -78,12 +78,12 @@
                                 <div class="card mini-stat bg-primary">
                                     <div class="card-body mini-stat-img">
                                         <div class="mini-stat-icon">
-                                            <i class="mdi mdi-briefcase-check float-right"></i>
+                                            <i class="mdi mdi-chart-line float-right"></i>
                                         </div>
                                         <div class="text-white">
-                                            <h6 class="text-uppercase mb-3">Product</h6>
+                                            <h6 class="text-uppercase mb-3">Kinerja</h6>
                                             <h4 class="mb-4">0</h4>
-                                            <span class="badge badge-info"> +89% </span> <span class="ml-2">From previous period</span>
+                                            <span class="badge badge-info"> 0 </span> <span class="ml-2">From previous period</span>
                                         </div>
                                     </div>
                                 </div>

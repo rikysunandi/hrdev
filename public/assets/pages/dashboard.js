@@ -88,8 +88,7 @@
             dashboard.summary = summary;
 
             $('#jml_pegawai').html(summary.jml_pegawai);
-            $('#jml_laki_laki').html(summary.jml_laki_laki);
-            $('#jml_perempuan').html(summary.jml_perempuan);
+            $('#jml_pensiun').html(summary.jml_pensiun);
 
             dashboard.sumGender = [
                 {label: "Laki-laki", value: Math.round((summary.jml_laki_laki/summary.jml_pegawai)*100)},
@@ -289,9 +288,9 @@ function($) {
             $('div#mutasi .inbox-wid').append( `
                 <a href="#" class="text-dark">
                     <div class="inbox-item">
-                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/users/user-1.jpg" class="thumb-md rounded-circle" alt=""></div>
+                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/photos/`+v.prev_per_no+`.jpg" class="thumb-md rounded-circle" alt=""></div>
                         <h6 class="inbox-item-author mt-0 mb-1">`+v.personnel_number+`</h6>
-                        <p class="inbox-item-text text-muted mb-0">`+v.nama_panjang_posisi+' pada '+v.personnel_subarea+`</p>
+                        <p class="inbox-item-text text-muted mb-0">`+v.nama_panjang_posisi+' PADA '+v.personnel_subarea+`</p>
                         <p class="inbox-item-date text-muted">`+v.start_date+`</p>
                     </div>
                 </a>
@@ -309,7 +308,7 @@ function($) {
             $('div#pensiun .inbox-wid').append( `
                 <a href="#" class="text-dark">
                     <div class="inbox-item">
-                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/users/user-1.jpg" class="thumb-md rounded-circle" alt=""></div>
+                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/photos/`+v.prev_per_no+`.jpg" class="thumb-md rounded-circle" alt=""></div>
                         <h6 class="inbox-item-author mt-0 mb-1">`+v.personnel_number+`</h6>
                         <p class="inbox-item-text text-muted mb-0">`+v.personnel_subarea+`</p>
                         <p class="inbox-item-date text-muted">`+v.start_date+`</p>
