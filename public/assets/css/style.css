@@ -281,6 +281,10 @@ dt {
   padding: 0;
 }
 
+.p-10 {
+  padding: 10px;
+}
+
 .p-t-10 {
   padding-top: 10px;
 }
@@ -1923,7 +1927,7 @@ label {
 }
 
 .custom-select-sm {
-  font-size: 75%;
+  font-size: .875rem;
 }
 
 .custom-control-input:checked ~ .custom-control-indicator {

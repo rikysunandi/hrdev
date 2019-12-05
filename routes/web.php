@@ -25,5 +25,5 @@ Route::get('/organisasi/get_ko1', 'OrganisasiController@getKO1');
 Route::get('/organisasi/get_ko2/{ko_1}', 'OrganisasiController@getKO2');
 Route::get('/organisasi/get_ko3/{ko_2}', 'OrganisasiController@getKO3');
 Route::get('/organisasi/get_ko4/{ko_3}', 'OrganisasiController@getKO4');
-Route::get('/organisasi/chart', 'OrganisasiController@chart');
+Route::get('/organisasi/get_chart_data', 'OrganisasiController@getChartData');
 Route::get('{any}', 'LexaController@index');

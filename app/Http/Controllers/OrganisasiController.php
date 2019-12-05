@@ -72,15 +72,32 @@ class OrganisasiController extends Controller
         $ko = DB::select("select * from vw_ko_4 where kode LIKE '$ko3%' ");
         return response()->json($ko);
     }
-    
+
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getKO4($ko3)
+    public function getChartData(Request $request)
     {
-        $ko = DB::select("select * from vw_ko_4 where kode LIKE '$ko3%' ");
-        return response()->json($ko);
+    	// dd($request);
+    	$ko1 = $request->input('ko1');
+    	$ko2 = $request->input('ko2');
+    	$ko3 = $request->input('ko3');
+    	$ko4 = $request->input('ko4');
+    	$fungsional = ($request->input('fungsional')=='false')?'T':'Y';
+    	$blth = $request->input('blth');
+        $bulan = substr($blth,0,2);
+    	$tahun = substr($blth,3,4);
+
+        $data = DB::select('call sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?)', [$ko1, $ko2, $ko3, $ko4, $fungsional, $tahun, $bulan]);
+        foreach ($data as $k => $v) {
+            if(file_exists(public_path().'/assets/images/photos/'.$v->prev_per_no.'.jpg'))
+                $data[$k]->img = asset('assets/images/photos/'.$v->prev_per_no.'.jpg');
+            else
+                $data[$k]->img = asset('assets/images/users/blank-avatar.jpg');
+        }
+
+        return response()->json($data);
     }
 }
