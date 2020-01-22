@@ -8,3 +8,4 @@
         <link href="{{ URL::asset('assets/css/metismenu.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{ URL::asset('assets/css-dark/icons.css')}}" rel="stylesheet" type="text/css">
         <link href="{{ URL::asset('assets/css-dark/style.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{ URL::asset('assets/css/custom.css')}}" rel="stylesheet" type="text/css">

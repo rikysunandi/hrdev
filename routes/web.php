@@ -26,4 +26,10 @@ Route::get('/organisasi/get_ko2/{ko_1}', 'OrganisasiController@getKO2');
 Route::get('/organisasi/get_ko3/{ko_2}', 'OrganisasiController@getKO3');
 Route::get('/organisasi/get_ko4/{ko_3}', 'OrganisasiController@getKO4');
 Route::get('/organisasi/get_chart_data', 'OrganisasiController@getChartData');
+Route::get('/karir/posisi-kosong', 'KarirController@posisiKosong');
+Route::get('/karir/posisi-kosong/get-data', 'KarirController@getPosisiKosongData');
 Route::get('{any}', 'LexaController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

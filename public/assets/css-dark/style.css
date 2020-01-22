@@ -312,6 +312,10 @@ dt {
   padding: 0;
 }
 
+.p-10 {
+  padding: 10px;
+}
+
 .p-t-10 {
   padding-top: 10px;
 }
@@ -334,6 +338,10 @@ dt {
 
 .m-r-15 {
   margin-right: 15px;
+}
+
+.m-r-20 {
+  margin-right: 20px;
 }
 
 .m-l-10 {

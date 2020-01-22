@@ -121,10 +121,24 @@ $(document).ready(function() {
 
 	    	chart.on('click', function (sender, node) {
 
+	    		console.log(node);
                 $('#avatar').attr('src', node.img);
                 $('#nama').html(node.name);
-                $('#jabatan').html(node.jabatan);
+                $('#jabatan').html(node.nama_panjang_posisi);
+                $('#nip').html(node.prev_per_no);
+                $('#ttl').html(node.birthplace+', '+node.birth_date);
+                $('#grade').html(node.ps_group);
+                $('#jenjang').html(node.jenjang);
+                $('#pendidikan').html(node.branch_of_study_01);
                 $('#modal_detail').modal('show');
+
+                $('#jabatan').removeClass();
+            	$('#jabatan').addClass(node.tags[0]);
+
+            	if(node.email!='')
+            		$('#email').attr('href', 'mailto:'+node.email);
+            	if(node.telephone_no!='')
+            		$('#telepon').attr('href', 'https://web.whatsapp.com/send?phone='+node.telephone_no);
 
                 return false;
             });

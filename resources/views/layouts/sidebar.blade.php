@@ -13,7 +13,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ URL::to('/') }}calendar" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Calendar </span></a>
+                                <a href="{{ URL::to('/') }}/calendar" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Calendar </span></a>
                             </li>
 
                             <li>
@@ -27,6 +27,19 @@
                             <li class="menu-title">Organisasi</li>
                             <li>
                                 <a href="{{ URL::to('/') }}/organisasi/chart" class="waves-effect"><i class="mdi mdi-file-tree"></i><span> Struktur Organisasi </span></a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-email-outline"></i><span> Dummy <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <ul class="submenu">
+                                    <li><a href="{{ URL::to('/') }}/email-inbox">Inbox</a></li>
+                                    <li><a href="{{ URL::to('/') }}/email-read">Email Read</a></li>
+                                    <li><a href="{{ URL::to('/') }}/email-compose">Email Compose</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-title">Karir dan Pengembangan SDM</li>
+                            <li>
+                                <a href="{{ URL::to('/') }}/karir/posisi-kosong" class="waves-effect"><i class="mdi mdi-account-off"></i><span> Daftar Posisi Kosong </span></a>
                             </li>
 
                             <li>

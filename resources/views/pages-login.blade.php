@@ -13,18 +13,30 @@
 
                     <div class="p-3">
                         <h4 class="text-muted font-18 m-b-5 text-center">Welcome Back !</h4>
-                        <p class="text-muted text-center">Sign in to continue to Fonik.</p>
+                        <p class="text-muted text-center">Sign in to continue to HRDev.</p>
 
-                        <form class="form-horizontal m-t-30" action="index">
+                        <form class="form-horizontal m-t-30" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
 
                             <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                <label for="username">Email</label>
+                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" name="email" placeholder="Enter Email Address" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
                             <div class="form-group">
                                 <label for="userpassword">Password</label>
-                                <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" name="password" placeholder="Enter password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
                             <div class="form-group row m-t-20">
@@ -52,7 +64,7 @@
 
             <div class="m-t-40 text-center">
                 <p>Don't have an account ? <a href="pages-register" class="font-14 text-primary"> Signup Now </a> </p>
-                <p>© {{date('Y')}} Lexa. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                <p>© {{date('Y')}} PLN UID Jabar. Crafted with <i class="mdi mdi-heart text-danger"></i> by ASDM 10</p>
             </div>
 
         </div>

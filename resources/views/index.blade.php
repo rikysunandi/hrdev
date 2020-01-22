@@ -55,7 +55,7 @@
                                         <div class="text-white">
                                             <h6 class="text-uppercase mb-3">Pensiun</h6>
                                             <h4 id="jml_pensiun" class="mb-4">0</h4>
-                                            <span class="badge badge-danger"> -29% </span> <span class="ml-2">From previous period</span>
+                                            <span class="badge badge-danger"> -29% </span> <span class="ml-2">From prev period</span>
                                         </div>
                                     </div>
                                 </div>
