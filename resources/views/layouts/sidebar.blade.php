@@ -24,6 +24,9 @@
                                     <li><a href="{{ URL::to('/') }}/email-compose">Email Compose</a></li>
                                 </ul>
                             </li>
+                            <li>
+                                <a href="{{ URL::to('/') }}/profile" class="waves-effect"><i class="far fa-user"></i><span> Profile </span></a>
+                            </li>
                             <li class="menu-title">Organisasi</li>
                             <li>
                                 <a href="{{ URL::to('/') }}/organisasi/chart" class="waves-effect"><i class="mdi mdi-file-tree"></i><span> Struktur Organisasi </span></a>
@@ -40,6 +43,15 @@
                             <li class="menu-title">Karir dan Pengembangan SDM</li>
                             <li>
                                 <a href="{{ URL::to('/') }}/karir/posisi-kosong" class="waves-effect"><i class="mdi mdi-account-off"></i><span> Daftar Posisi Kosong </span></a>
+                            </li>
+                            <li>
+                                <a href="{{ URL::to('/') }}/karir/plt" class="waves-effect"><i class="mdi mdi-account-outline"></i><span> Daftar PLT Struktural</span></a>
+                            </li>
+                            <li>
+                                <a href="{{ URL::to('/') }}/karir/lama-menjabat" class="waves-effect"><i class="mdi mdi-human-greeting"></i><span> Struktural Lama Menjabat </span></a>
+                            </li>
+                            <li>
+                                <a href="{{ URL::to('/') }}/karir/akan-pensiun" class="waves-effect"><i class="mdi mdi-walk"></i><span> Struktural Akan Pensiun </span></a>
                             </li>
 
                             <li>

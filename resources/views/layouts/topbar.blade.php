@@ -31,7 +31,7 @@
                         <li class="dropdown notification-list d-none d-sm-block">
                             <form role="search" class="app-search">
                                 <div class="form-group mb-0"> 
-                                    <input type="text" class="form-control" placeholder="Search..">
+                                    <input id="top_prev_per_no" type="text" class="typeahead tt-query form-control" autocomplete="off" spellcheck="false" placeholder="Search..">
                                     <button type="submit"><i class="fa fa-search"></i></button>
                                 </div>
                             </form> 
