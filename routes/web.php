@@ -33,3 +33,15 @@ Route::get('{any}', 'LexaController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/* fitproper */
+
+Route::get('/fitpro/mBidang', 'FitproController@mBidang');
+Route::get('/fitpro/mBidang/get-data', 'FitproController@getmBidangData');
+Route::get('/fitpro/mSoftKompetensi', 'FitproController@mSoftKompetensi');
+Route::get('/fitpro/mSoftKompetensi/get-data', 'FitproController@getmSoftKompetensiData');
+Route::get('/fitpro/mKompetensi', 'FitproController@mKompetensi');
+Route::get('/fitpro/mKompetensi/get-data', 'FitproController@getmKompetensiData');
+Route::get('/fitpro/mKeyBehaviour', 'FitproController@mKeyBehaviour');
+Route::get('/fitpro/mKeyBehaviour/get-data', 'FitproController@getmKeyBehaviourData');
+//Route::get('/karir/posisi-kosong/get-data', 'KarirController@getPosisiKosongData');

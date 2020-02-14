@@ -50,7 +50,24 @@
                                     <li><a href="{{ URL::to('/') }}/email-compose">Email Compose</a></li>
                                 </ul>
                             </li>
-
+                            <li>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-apps"></i><span> Fit & Proper <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="{{ URL::to('/') }}/fitpro/mBidang" class="waves-effect"><i class="mdi mdi-apps"></i><span> Master Posisi </span></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ URL::to('/') }}/fitpro/mSoftKompetensi" class="waves-effect"><i class="mdi mdi-apps"></i><span> Master SoftKompetensi </span></a>
+                                    </li> 
+                                    <li>
+                                        <a href="{{ URL::to('/') }}/fitpro/mKompetensi" class="waves-effect"><i class="mdi mdi-apps"></i><span> Master Kompetensi </span></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ URL::to('/') }}/fitpro/mKeyBehaviour" class="waves-effect"><i class="mdi mdi-apps"></i><span> Master Key Behaviour </span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
                             <li class="menu-title">Components</li>
 
                             <li>
