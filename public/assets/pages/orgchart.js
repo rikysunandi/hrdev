@@ -11,57 +11,49 @@ $(document).ready(function() {
 	    format: 'mm/yyyy'
     });
 
-    $.getJSON('get_ko2/01', function(data){
-	    $('#ko_2').empty()
-	    		.append('<option selected disabled>Pilih Organisasi I</option>');
-	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
-	    $('#ko_3').empty()
-	    		.append('<option selected disabled>Pilih Organisasi II</option>');
-	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
-	    $('#ko_4').empty()
-	    		.append('<option selected disabled>Pilih Organisasi III</option>');
-	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
-    	$.each(data,function(i,v){
-        	$('#ko_2').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
-    	});
-		$('#ko_2').append('<option value="00">SEMUA ORGANISASI</option>');
+	var pegawai = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('personnel_number'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: APP_URL+'/data/get-pegawai'
+    });
+    
+    // Initializing the typeahead with remote dataset without highlighting
+    $('input#prev_per_no').typeahead(null, {
+        name: 'pegawai',
+        source: pegawai,
+        display: 'personnel_number',
+        templates: {
+            empty: [
+              '<div class="empty-message">',
+                'Tidak dapat menemukan apa yang anda cari',
+              '</div>'
+            ].join('\n'),
+            suggestion: function(data) {
+                return '<p><strong>' + data.prev_per_no + '</strong> – ' + data.personnel_number + '</p>';
+            }
+            //suggestion: Handlebars.compile('<div><strong>{{prev_per_no}}</strong> – {{personnel_number}}</div>')
+        },
+        limit: 10 
     });
 
-    $('#ko_2').change(function(){
+    $('input#prev_per_no').bind('typeahead:select', function(ev, suggestion) {
+      console.log('ev: ', ev);
+      console.log('Selection: ', suggestion);
 
-	    $('#ko_3').empty()
-	    		.append('<option selected disabled>Pilih Organisasi II</option>');
-	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
-	    $('#ko_4').empty()
-	    		.append('<option selected disabled>Pilih Organisasi III</option>');
-	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
-	    $.getJSON('get_ko3/'+$('#ko_2').val(), function(data){
-	    	$.each(data,function(i,v){
-	        	$('#ko_3').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
-	    	});
-			$('#ko_3').append('<option value="00">SEMUA ORGANISASI</option>');
-	    });
-    });
-
-    $('#ko_3').change(function(){
-
-	    $('#ko_4').empty()
-    			.append('<option selected disabled>Pilih Organisasi III</option>');
-	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
-	    $.getJSON('get_ko4/'+$('#ko_3').val(), function(data){
-	    	$.each(data,function(i,v){
-
-	        	$('#ko_4').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
-	    	});
-			$('#ko_4').append('<option value="00">SEMUA ORGANISASI</option>');
-	    });
+		$('#ko_2').append('<option selected value="00">SEMUA ORGANISASI</option>');
+		$('#ko_3').empty().append('<option selected value="00">SEMUA ORGANISASI</option>');
+		$('#ko_4').empty().append('<option selected value="00">SEMUA ORGANISASI</option>');
+        //window.location.href = APP_URL+'/profile/'+suggestion.prev_per_no;
+        //$.redirect(APP_URL+'/profile', {prev_per_no: suggestion.prev_per_no, _token: csrf_token}, "POST"); 
     });
 
     $('#btn_cari').click(function(){
 
+    	console.log('Cari...');
     	$('#orgchart').empty();
     	$.blockUI({message: '<h1 class="p-10">Mohon menunggu...</h1>'});
     	$.getJSON('/organisasi/get_chart_data', {
+	        prev_per_no: $('#prev_per_no').val(),
 	        ko1: $('#ko_1').val(),
 	        ko2: $('#ko_2').val(),
 	        ko3: $('#ko_3').val(),
@@ -94,7 +86,7 @@ $(document).ready(function() {
 	    		layout: OrgChart.mixed,
                 scaleInitial: OrgChart.match.boundary,
                 nodeBinding: {
-                    field_0: "position",
+                    field_0: "title",
                     field_1: "personnel_number",
                     field_2: "prev_per_no",
                     field_3: "tanggal_masuk",
@@ -139,6 +131,10 @@ $(document).ready(function() {
             		$('#email').attr('href', 'mailto:'+node.email);
             	if(node.telephone_no!='')
             		$('#telepon').attr('href', 'https://web.whatsapp.com/send?phone='+node.telephone_no);
+            	$('#detail').click(function(e){
+            		e.preventDefault();
+            		$.redirect(APP_URL+'/profile', {prev_per_no: node.prev_per_no, _token: csrf_token}, "POST", "_blank");
+            	});
 
                 return false;
             });
@@ -147,6 +143,62 @@ $(document).ready(function() {
 
 	    });
     });
+
+
+    if(prev_per_no != ''){
+    	$('#prev_per_no').val(prev_per_no);
+		$('#ko_2').append('<option selected value="00">SEMUA ORGANISASI</option>');
+		$('#ko_3').append('<option selected value="00">SEMUA ORGANISASI</option>');
+		$('#ko_4').append('<option selected value="00">SEMUA ORGANISASI</option>');
+		$('#btn_cari').trigger( "click" );
+    }else{
+
+	    $.getJSON('/referensi/get_ko2/01', function(data){
+		    $('#ko_2').empty()
+		    		.append('<option selected disabled>Pilih Organisasi I</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $('#ko_3').empty()
+		    		.append('<option selected disabled>Pilih Organisasi II</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $('#ko_4').empty()
+		    		.append('<option selected disabled>Pilih Organisasi III</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+	    	$.each(data,function(i,v){
+	        	$('#ko_2').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
+	    	});
+			$('#ko_2').append('<option value="00">SEMUA ORGANISASI</option>');
+	    });
+
+	    $('#ko_2').change(function(){
+
+		    $('#ko_3').empty()
+		    		.append('<option selected disabled>Pilih Organisasi II</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $('#ko_4').empty()
+		    		.append('<option selected disabled>Pilih Organisasi III</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $.getJSON('/referensi/get_ko3/'+$('#ko_2').val(), function(data){
+		    	$.each(data,function(i,v){
+		        	$('#ko_3').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
+		    	});
+				$('#ko_3').append('<option value="00">SEMUA ORGANISASI</option>');
+		    });
+	    });
+
+	    $('#ko_3').change(function(){
+
+		    $('#ko_4').empty()
+	    			.append('<option selected disabled>Pilih Organisasi III</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $.getJSON('/referensi/get_ko4/'+$('#ko_3').val(), function(data){
+		    	$.each(data,function(i,v){
+
+		        	$('#ko_4').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
+		    	});
+				$('#ko_4').append('<option value="00">SEMUA ORGANISASI</option>');
+		    });
+	    });
+	}
 
     
 

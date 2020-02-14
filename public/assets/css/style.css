@@ -293,6 +293,14 @@ dt {
   padding-bottom: 10px;
 }
 
+.p-t-20 {
+  padding-top: 20px;
+}
+
+.p-b-20 {
+  padding-bottom: 20px;
+}
+
 .m-0 {
   margin: 0;
 }
@@ -311,6 +319,10 @@ dt {
 
 .m-r-20 {
   margin-right: 20px;
+}
+
+.m-l-5 {
+  margin-left: 5px;
 }
 
 .m-l-10 {

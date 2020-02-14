@@ -43,6 +43,19 @@ class HomeController extends Controller
         return response()->json([$summary[0], $rekap_per_unit]);
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPegawai()
+    {
+        $pegawai = DB::select('select pers_no, prev_per_no, personnel_number, position, business_area, personnel_subarea from pegawai');
+
+        return response()->json($pegawai);
+    }
+
+
     public function getMutasiTebaru(){
         $newest_mutasi = DB::select('select * from vw_newest_mutasi');
         return response()->json($newest_mutasi);

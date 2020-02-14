@@ -1,7 +1,8 @@
-body {
-  font-size: 11px !important;
-}
 
+/*body {
+  font-size: 12px !important;
+}
+*/
 .crop {
     width: 200px;
     height: 150px;
@@ -112,4 +113,30 @@ body {
 
 body.modal {
     margin: 0 !important;
+}
+
+
+
+/*
+    PROFILE STYLE
+*/
+
+.chart {
+    position: relative;
+    text-align: center;
+}
+
+.chart canvas {
+    display: block;
+    margin: 0px auto;
+}
+
+.chart span {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    top: 50%;
+    margin-top: -12px;
+    color: #999;
 }
