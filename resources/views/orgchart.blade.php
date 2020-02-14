@@ -45,39 +45,45 @@
                         <div id="panel_pencarian" class="card m-t-20 m-b-20">
                             <div class="card-body">
                                 <h4 class="mt-0 m-b-10 header-title">Pilih Organisasi</h4>
-                                <input id="prev_per_no" type="text" class="form-control col-2 col-sm" autocomplete="off" spellcheck="false" " placeholder="NIP / Nama Pegawai">
-                                <select id="ko_2" class="custom-select custom-select-sm m-b-10 col-2">
-                                    <option selected disabled>Pilih Organisasi I</option>
-                                </select>
-                                <select id="ko_3" class="custom-select custom-select-sm m-b-10 col-2">
-                                    <option selected disabled>Pilih Organisasi II</option>
-                                </select>
-                                <select id="ko_4" class="custom-select custom-select-sm m-b-10 col-2">
-                                    <option selected disabled>Pilih Organisasi III</option>
-                                </select>
-                                <div class="input-group col-2">
-                                    <label class="m-r-10">Fungsional</label>
-                                    <input type="checkbox" id="sw_fungsional" switch="none" checked/>
-                                        <label for="sw_fungsional" data-on-label="Ya"
-                                                data-off-label="Tidak"></label>
-                                </div>
-                                <div class="input-group col-2">
-                                    <input id="blth" type="text" class="form-control col-sm-6" placeholder="dd/yyyy" value="<?php echo date('m/Y') ?>">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                                    </div>
-                                </div><!-- input-group -->
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <div class="col-2 input-group m-r-10">
+                                            <input id="prev_per_no" type="text" class="form-control col-sm" autocomplete="off" spellcheck="false" " placeholder="NIP / Nama Pegawai">
+                                        </div>
+                                        <select id="ko_2" class="custom-select custom-select-sm m-r-10 col-2">
+                                            <option selected disabled>Pilih Organisasi I</option>
+                                        </select>
+                                        <select id="ko_3" class="custom-select custom-select-sm m-r-10 col-2">
+                                            <option selected disabled>Pilih Organisasi II</option>
+                                        </select>
+                                        <select id="ko_4" class="custom-select custom-select-sm m-r-10 col-2">
+                                            <option selected disabled>Pilih Organisasi III</option>
+                                        </select>
+                                        <div class="input-group col-1">
+                                            <label class="m-r-10">Fungsional</label>
+                                            <input type="checkbox" id="sw_fungsional" switch="none" checked/>
+                                                <label for="sw_fungsional" data-on-label="Ya"
+                                                        data-off-label="Tidak"></label>
+                                        </div>
+                                        <div class="input-group col-1">
+                                            <input id="blth" type="text" class="form-control" placeholder="dd/yyyy" value="<?php echo date('m/Y') ?>">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                            </div>
+                                        </div><!-- input-group -->
 
-                                <div class="text-right m-t-15">
-                                    <button id="btn_cari" type="button" class="btn btn-primary waves-effect waves-light"><i class="ti-search"></i> Cari</button>
-                                </div>
+                                        <div class="text-right m-t-15">
+                                            <button id="btn_cari" type="button" class="btn btn-primary waves-effect waves-light"><i class="ti-search"></i> Cari</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-9">
+                    <div class="col-lg-12">
                         <div class="card m-t-30 m-b-30">
                             <div class="card-body">
                                 <div style="width: 100%; height: 100%;" id="orgchart"></div>
