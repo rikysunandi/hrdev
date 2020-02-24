@@ -3,6 +3,7 @@ $(document).ready(function() {
     "use strict";
 
     $('.button-menu-mobile').trigger('click');
+
     //$('body').addClass('enlarged');
 
     $('#blth').datepicker({
@@ -18,7 +19,7 @@ $(document).ready(function() {
     });
     
     // Initializing the typeahead with remote dataset without highlighting
-    $('input#prev_per_no').typeahead(null, {
+    $('input#prev_per_no_cari').typeahead(null, {
         name: 'pegawai',
         source: pegawai,
         display: 'personnel_number',
@@ -36,13 +37,15 @@ $(document).ready(function() {
         limit: 10 
     });
 
-    $('input#prev_per_no').bind('typeahead:select', function(ev, suggestion) {
+    $('input#prev_per_no_cari').bind('typeahead:select', function(ev, suggestion) {
       console.log('ev: ', ev);
       console.log('Selection: ', suggestion);
 
 		$('#ko_2').append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#ko_3').empty().append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#ko_4').empty().append('<option selected value="00">SEMUA ORGANISASI</option>');
+
+		$('#prev_per_no').val(suggestion.prev_per_no);
         //window.location.href = APP_URL+'/profile/'+suggestion.prev_per_no;
         //$.redirect(APP_URL+'/profile', {prev_per_no: suggestion.prev_per_no, _token: csrf_token}, "POST"); 
     });
@@ -54,7 +57,7 @@ $(document).ready(function() {
     	$.blockUI({message: '<h1 class="p-10">Mohon menunggu...</h1>'});
     	$.getJSON('/organisasi/get_chart_data', {
 	        prev_per_no: $('#prev_per_no').val(),
-	        ko1: $('#ko_1').val(),
+	        ko1: '01',
 	        ko2: $('#ko_2').val(),
 	        ko3: $('#ko_3').val(),
 	        ko4: $('#ko_4').val(),
@@ -62,6 +65,10 @@ $(document).ready(function() {
 	        blth: $('#blth').val(),
 	    }, function(data) {
 
+	    	var ftk = data[1];
+	    	data = data[0];
+
+	    	var ftk_real=0;
 	    	for (var i = 0; i < data.length; i++) {
 		        var node = data[i];
 		        switch (node.tags) {
@@ -78,6 +85,9 @@ $(document).ready(function() {
 		                node.tags = ["kosong"];
 		                break;
 		        }
+
+		        if(node.prev_per_no!='')
+		        	ftk_real = ftk_real+1;
 		        //node.img = photosUrl+"/"+node.prev_per_no+".jpg";
 		    }
 
@@ -122,7 +132,8 @@ $(document).ready(function() {
                 $('#grade').html(node.ps_group);
                 $('#jenjang').html(node.jenjang);
                 $('#pendidikan').html(node.branch_of_study_01);
-                $('#modal_detail').modal('show');
+                $('#unit').html(node.personnel_subarea);
+                //$('#modal_detail').modal('show');
 
                 $('#jabatan').removeClass();
             	$('#jabatan').addClass(node.tags[0]);
@@ -139,7 +150,13 @@ $(document).ready(function() {
                 return false;
             });
 
+            $('#ftk').html(ftk.kotak_organisasi+' '+ftk_real+' / '+ftk.pagu_ftk);
+
+	    	$('#collapseOne').collapse();
+	    	$('.profile-card').show();
+
 	    	setTimeout($.unblockUI, 2000);
+
 
 	    });
     });

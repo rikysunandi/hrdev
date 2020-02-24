@@ -91,7 +91,12 @@ class OrganisasiController extends Controller
         $bulan = substr($blth,0,2);
     	$tahun = substr($blth,3,4);
 
-        $data = DB::select('call sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?)', [$ko1, $ko2, $ko3, $ko4, $fungsional, $tahun, $bulan]);
+        $data = DB::select('call sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?, ?)', [$prev_per_no, $ko1, $ko2, $ko3, $ko4, $fungsional, $tahun, $bulan]);
+
+        $ftk = DB::select("select * from vw_ko_unit
+                            where (select kode_ko from pegawai_log where tahun=? and bulan=? and prev_per_no=?) like concat(kode,'%')
+                            order by LENGTH(kode) DESC LIMIT 1", [$tahun, $bulan, $prev_per_no]);
+
         foreach ($data as $k => $v) {
             if(file_exists(public_path().'/assets/images/photos/'.$v->prev_per_no.'.jpg'))
                 $data[$k]->img = asset('assets/images/photos/'.$v->prev_per_no.'.jpg');
@@ -99,6 +104,6 @@ class OrganisasiController extends Controller
                 $data[$k]->img = asset('assets/images/users/blank-avatar.jpg');
         }
 
-        return response()->json($data);
+        return response()->json([$data, $ftk[0]]);
     }
 }

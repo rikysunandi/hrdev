@@ -301,6 +301,14 @@ dt {
   padding-bottom: 20px;
 }
 
+.p-r-5 {
+  padding-right: 5px;
+}
+
+.p-r-10 {
+  padding-right: 10px;
+}
+
 .m-0 {
   margin: 0;
 }

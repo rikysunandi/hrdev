@@ -3,6 +3,11 @@
   font-size: 12px !important;
 }
 */
+
+.hidden{
+    display: none;
+}
+
 .crop {
     width: 200px;
     height: 150px;
@@ -19,15 +24,16 @@
     /*top:50%;
     left:50%;
     transform:translate(-50%,-50%); */
-    width:360px;
-    min-height:520px;
+    width:100%;
+    min-height:550px;
     background:#fff;
-    box-shadow:0 20px 50px rgba(0,0,0,.1);
-    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    border-radius:4px;
     transition:0.5s;
+    padding: 0.8rem;
 }
 .profile-card:hover {
-    box-shadow:0 30px 70px rgba(0,0,0,.2);
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
 }
 .profile-card dl{
 	padding: 10px 30px;
@@ -66,6 +72,7 @@
     color:#fff;
     display:inline-block;
     padding:4px 10px;
+    margin: 0px 4px;
     border-radius:15px;
 }
 .box h2 span.fungsional {
