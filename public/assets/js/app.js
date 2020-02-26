@@ -130,7 +130,9 @@
                   '</div>'
                 ].join('\n'),
                 suggestion: function(data) {
-                    return '<p><strong>' + data.prev_per_no + '</strong> – ' + data.personnel_number + '</p>';
+                    return '<div class="row no-marginLR">'+
+                        '<div class="col-3 no-padding"><img src="'+data.img+'" width="48" height="48" /></div>'+
+                        '<div class="col-9"><strong>' + data.prev_per_no + '</strong><br/>' + data.personnel_number + '</div></row>';
                 }
                 //suggestion: Handlebars.compile('<div><strong>{{prev_per_no}}</strong> – {{personnel_number}}</div>')
             },

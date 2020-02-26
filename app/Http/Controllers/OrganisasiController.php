@@ -86,16 +86,17 @@ class OrganisasiController extends Controller
     	$ko2 = $request->input('ko2');
     	$ko3 = $request->input('ko3');
         $ko4 = $request->input('ko4');
+        $ko5 = $request->input('ko5');
     	$fungsional = ($request->input('fungsional')=='false')?'T':'Y';
     	$blth = $request->input('blth');
         $bulan = substr($blth,0,2);
     	$tahun = substr($blth,3,4);
 
-        $data = DB::select('call sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?, ?)', [$prev_per_no, $ko1, $ko2, $ko3, $ko4, $fungsional, $tahun, $bulan]);
+        $data = DB::select('call sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?, ?, ?)', [$prev_per_no, $ko1, $ko2, $ko3, $ko4, $ko5, $fungsional, $tahun, $bulan]);
 
         $ftk = DB::select("select * from vw_ko_unit
-                            where (select kode_ko from pegawai_log where tahun=? and bulan=? and prev_per_no=?) like concat(kode,'%')
-                            order by LENGTH(kode) DESC LIMIT 1", [$tahun, $bulan, $prev_per_no]);
+                            where kode = '0101'
+                            order by LENGTH(kode) DESC LIMIT 1");
 
         foreach ($data as $k => $v) {
             if(file_exists(public_path().'/assets/images/photos/'.$v->prev_per_no.'.jpg'))
