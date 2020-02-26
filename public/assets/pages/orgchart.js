@@ -30,7 +30,9 @@ $(document).ready(function() {
               '</div>'
             ].join('\n'),
             suggestion: function(data) {
-                return '<p><strong>' + data.prev_per_no + '</strong> – ' + data.personnel_number + '</p>';
+                return '<div class="row no-marginLR">'+
+                	'<div class="col-3 no-padding"><img src="'+data.img+'" width="48" height="48" /></div>'+
+                	'<div class="col-9"><strong>' + data.prev_per_no + '</strong><br/>' + data.personnel_number + '</div></row>';
             }
             //suggestion: Handlebars.compile('<div><strong>{{prev_per_no}}</strong> – {{personnel_number}}</div>')
         },
@@ -44,6 +46,7 @@ $(document).ready(function() {
 		$('#ko_2').append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#ko_3').empty().append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#ko_4').empty().append('<option selected value="00">SEMUA ORGANISASI</option>');
+		$('#ko_5').empty().append('<option selected value="00">SEMUA ORGANISASI</option>');
 
 		$('#prev_per_no').val(suggestion.prev_per_no);
         //window.location.href = APP_URL+'/profile/'+suggestion.prev_per_no;
@@ -54,13 +57,15 @@ $(document).ready(function() {
 
     	console.log('Cari...');
     	$('#orgchart').empty();
+		$('.profile-card').hide();
     	$.blockUI({message: '<h1 class="p-10">Mohon menunggu...</h1>'});
     	$.getJSON('/organisasi/get_chart_data', {
 	        prev_per_no: $('#prev_per_no').val(),
-	        ko1: '01',
+	        ko1: '15000000',
 	        ko2: $('#ko_2').val(),
 	        ko3: $('#ko_3').val(),
 	        ko4: $('#ko_4').val(),
+	        ko5: $('#ko_5').val(),
 	        fungsional: $('#sw_fungsional').is(":checked"),
 	        blth: $('#blth').val(),
 	    }, function(data) {
@@ -96,10 +101,10 @@ $(document).ready(function() {
 	    		layout: OrgChart.mixed,
                 scaleInitial: OrgChart.match.boundary,
                 nodeBinding: {
-                    field_0: "title",
-                    field_1: "personnel_number",
+                    field_0: "pos_stext_name",
+                    field_1: "fullname",
                     field_2: "prev_per_no",
-                    field_3: "tanggal_masuk",
+                    field_3: "permanent_date",
                     img_0: "img"
                 },
                 menu: {
@@ -112,12 +117,12 @@ $(document).ready(function() {
                     fit: true,
                     expandAll: false
                 },
-                nodeMenu:{
-                    details: {text:"Details"},
-                    edit: {text:"Edit"},
-                    add: {text:"Add"},
-                    remove: {text:"Remove"}
-                },
+                // nodeMenu:{
+                //     details: {text:"Details"},
+                //     edit: {text:"Edit"},
+                //     add: {text:"Add"},
+                //     remove: {text:"Remove"}
+                // },
                 nodes: data
 	    	});
 
@@ -125,14 +130,14 @@ $(document).ready(function() {
 
 	    		console.log(node);
                 $('#avatar').attr('src', node.img);
-                $('#nama').html(node.name);
-                $('#jabatan').html(node.nama_panjang_posisi);
+                $('#nama').html(node.fullname);
+                $('#jabatan').html(node.pos_ltext_name);
                 $('#nip').html(node.prev_per_no);
-                $('#ttl').html(node.birthplace+', '+node.birth_date);
-                $('#grade').html(node.ps_group);
-                $('#jenjang').html(node.jenjang);
-                $('#pendidikan').html(node.branch_of_study_01);
-                $('#unit').html(node.personnel_subarea);
+                $('#ttl').html(node.place_of_birth+', '+node.birthday);
+                $('#grade').html(node.grade_name);
+                $('#jenjang').html(node.main_group_position_text);
+                $('#pendidikan').html(node.branch_of_study_text);
+                $('#unit').html(node.sub_area_text);
                 //$('#modal_detail').modal('show');
 
                 $('#jabatan').removeClass();
@@ -167,10 +172,11 @@ $(document).ready(function() {
 		$('#ko_2').append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#ko_3').append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#ko_4').append('<option selected value="00">SEMUA ORGANISASI</option>');
+		$('#ko_5').append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#btn_cari').trigger( "click" );
     }else{
 
-	    $.getJSON('/referensi/get_ko2/01', function(data){
+	    $.getJSON('/referensi/get_ko2/15000000', function(data){
 		    $('#ko_2').empty()
 		    		.append('<option selected disabled>Pilih Organisasi I</option>');
 		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
@@ -179,6 +185,9 @@ $(document).ready(function() {
 		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
 		    $('#ko_4').empty()
 		    		.append('<option selected disabled>Pilih Organisasi III</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $('#ko_5').empty()
+		    		.append('<option selected disabled>Pilih Organisasi IV</option>');
 		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
 	    	$.each(data,function(i,v){
 	        	$('#ko_2').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
@@ -194,6 +203,9 @@ $(document).ready(function() {
 		    $('#ko_4').empty()
 		    		.append('<option selected disabled>Pilih Organisasi III</option>');
 		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $('#ko_5').empty()
+		    		.append('<option selected disabled>Pilih Organisasi IV</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
 		    $.getJSON('/referensi/get_ko3/'+$('#ko_2').val(), function(data){
 		    	$.each(data,function(i,v){
 		        	$('#ko_3').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
@@ -207,12 +219,29 @@ $(document).ready(function() {
 		    $('#ko_4').empty()
 	    			.append('<option selected disabled>Pilih Organisasi III</option>');
 		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $('#ko_5').empty()
+		    		.append('<option selected disabled>Pilih Organisasi IV</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
 		    $.getJSON('/referensi/get_ko4/'+$('#ko_3').val(), function(data){
 		    	$.each(data,function(i,v){
 
 		        	$('#ko_4').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
 		    	});
 				$('#ko_4').append('<option value="00">SEMUA ORGANISASI</option>');
+		    });
+	    });
+
+	    $('#ko_4').change(function(){
+
+		    $('#ko_5').empty()
+		    		.append('<option selected disabled>Pilih Organisasi IV</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $.getJSON('/referensi/get_ko5/'+$('#ko_4').val(), function(data){
+		    	$.each(data,function(i,v){
+
+		        	$('#ko_5').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
+		    	});
+				$('#ko_5').append('<option value="00">SEMUA ORGANISASI</option>');
 		    });
 	    });
 	}
