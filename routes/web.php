@@ -29,7 +29,6 @@ Route::get('/referensi/get_ko1', 'ReferensiController@getKO1');
 Route::get('/referensi/get_ko2/{ko_1}', 'ReferensiController@getKO2');
 Route::get('/referensi/get_ko3/{ko_2}', 'ReferensiController@getKO3');
 Route::get('/referensi/get_ko4/{ko_3}', 'ReferensiController@getKO4');
-Route::get('/referensi/get_ko5/{ko_4}', 'ReferensiController@getKO5');
 
 Route::get('/karir/posisi-kosong', 'Karir\PosisiKosongController@index');
 Route::get('/karir/posisi-kosong/get-data', 'Karir\PosisiKosongController@getData');

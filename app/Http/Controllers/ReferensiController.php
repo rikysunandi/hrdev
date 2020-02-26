@@ -15,7 +15,7 @@ class ReferensiController extends Controller
      */
     public function getKO1()
     {
-        $ko = DB::select('select * from vw_org_1');
+        $ko = DB::select('select * from vw_ko_1');
         return response()->json($ko);
     }
 
@@ -26,7 +26,7 @@ class ReferensiController extends Controller
      */
     public function getKO2($ko1)
     {
-        $ko = DB::select("select * from vw_org_2 where parent = '$ko1' ");
+        $ko = DB::select("select * from vw_ko_2 where kode LIKE '$ko1%' ");
         return response()->json($ko);
     }
 
@@ -37,7 +37,7 @@ class ReferensiController extends Controller
      */
     public function getKO3($ko2)
     {
-        $ko = DB::select("select * from vw_org_3 where parent = '$ko2' ");
+        $ko = DB::select("select * from vw_ko_3 where kode LIKE '$ko2%' ");
         return response()->json($ko);
     }
 
@@ -48,18 +48,7 @@ class ReferensiController extends Controller
      */
     public function getKO4($ko3)
     {
-        $ko = DB::select("select * from vw_org_4 where parent = '$ko3' ");
-        return response()->json($ko);
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getKO5($ko4)
-    {
-        $ko = DB::select("select * from vw_org_5 where parent = '$ko4' ");
+        $ko = DB::select("select * from vw_ko_4 where kode LIKE '$ko3%' ");
         return response()->json($ko);
     }
 }

@@ -25,7 +25,7 @@
     left:50%;
     transform:translate(-50%,-50%); */
     width:100%;
-    min-height:560px;
+    min-height:550px;
     background:#fff;
     box-shadow:0 4px 12px rgba(0,0,0,.1);
     border-radius:4px;
@@ -146,14 +146,4 @@ body.modal {
     top: 50%;
     margin-top: -12px;
     color: #999;
-}
-
-
-.no-marginLR {
-    margin-left:0;
-    margin-right:0;
-}
-
-.no-padding {
-    padding: 0px;
 }
