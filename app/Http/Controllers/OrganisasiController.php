@@ -92,7 +92,7 @@ class OrganisasiController extends Controller
         $bulan = substr($blth,0,2);
     	$tahun = substr($blth,3,4);
 
-        $data = DB::select('call sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?, ?, ?)', [$prev_per_no, $ko1, $ko2, $ko3, $ko4, $ko5, $fungsional, $tahun, $bulan]);
+        $data = DB::select('select * from sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?, ?, ?)', [$prev_per_no, $ko1, $ko2, $ko3, $ko4, $ko5, $fungsional, $tahun, $bulan]);
 
         $ftk = DB::select("select * from vw_ko_unit
                             where kode = '0101'
