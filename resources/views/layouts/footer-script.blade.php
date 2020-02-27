@@ -7,6 +7,7 @@
         <script src="{{ URL::asset('assets/js/jquery.blockUI.js')}}"></script>
         <script src="{{ URL::asset('assets/js/typeahead.bundle.js')}}"></script>
         <script src="{{ URL::asset('assets/js/jquery.redirect.js')}}"></script>
+        <script src="{{ URL::asset('assets/js/compare.js')}}"></script>
 
         <script src="{{ URL::asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
 
@@ -18,5 +19,5 @@
         </script>
         <!-- App js -->
         <script src="{{ URL::asset('assets/js/app.js')}}"></script>
-        
+
         @yield('script-bottom')

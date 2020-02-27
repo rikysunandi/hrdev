@@ -50,8 +50,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/referensi/get_ko3/{ko_2}', 'ReferensiController@getKO3');
         Route::get('/referensi/get_ko4/{ko_3}', 'ReferensiController@getKO4');
 
-        Route::get('/karir/posisi-kosong', 'Karir\PosisiKosongController@index');
+        Route::get('/karir/posisi-kosong', 'Karir\PosisiKosongController@index')->name('posisi.kososng');
         Route::get('/karir/posisi-kosong/get-data', 'Karir\PosisiKosongController@getData');
+        Route::post('/karir/daftar-kandidat/show', 'Karir\KandidatController@show')->name('daftar.kandidat');
+        Route::post('/karir/daftar-kandidat/store', 'Karir\KandidatController@store')->name('daftar.kandidat.store');
         Route::get('/karir/plt', 'Karir\PLTController@index');
         Route::get('/karir/plt/get-data', 'Karir\PLTController@getData');
         Route::get('/karir/lama-menjabat', 'Karir\LamaMenjabatController@index');

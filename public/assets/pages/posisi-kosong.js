@@ -51,7 +51,7 @@ $(document).ready(function() {
 
     var table =  $('#datatable-posisi-kosong').DataTable({
 	destroy: true,
-    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]], 
+    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
 	dom:
 	  "<'row'<'col-sm-6'B><'col-sm-4'f>>" +
 	  "<'row'<'col-sm-12'tr>>" +
@@ -68,21 +68,23 @@ $(document).ready(function() {
         { "data": "personnel_subarea" },
         { "data": "organizational_unit" },
         { "data": "jenjang", "width": "15%" },
-        { "data": "level_kompetensi" },	
-        { "data": "profesi" },	
-        { "data": "pendidikan" },	
+        { "data": "level_kompetensi" },
+        { "data": "profesi" },
+        { "data": "pendidikan" },
 		{
             render: function (data, type, row) {
             	console.log('data', data);
             	console.log('type', type);
             	console.log('row', row);
-                return '<a class="table-edit" data-id="' + row[0] + '">'+
-                			'<button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-light">'+
+                return '<form action="/karir/daftar-kandidat/show" method="post">'+
+                            '<input type="hidden" name="_token" value="'+csrf_token+'"></input>'+
+                            '<input type="hidden" name="jabatan_id" value="'+row['id']+'">'+
+                			'<button type="submit" class="btn btn-sm btn-outline-primary waves-effect waves-light">'+
                 				'<i class="mdi mdi-account-search"></i> Kandidat'+
-                			'</button></a>';
+                			'</button></form>';
             }
         }
-    ], 
+    ],
     deferRender: true,
     //serverSide: true,
     deferLoading: 0, // here
@@ -101,8 +103,8 @@ $(document).ready(function() {
 			console.log('ERROR : '+xhr.status);
 			//alert(thrownError);
 		}
-		
-	}, 
+
+	},
 	// "footerCallback": function (row, data, start, end, display) {
  //            var api = this.api(), data;
  //            // Remove the formatting to get integer data for summation
@@ -138,5 +140,5 @@ $(document).ready(function() {
 	    });
     });
 
-    
+
 });
