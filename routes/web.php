@@ -18,6 +18,8 @@ Route::get('/', function() {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
+    Route::get('setPassword', 'Auth\VerificationController@show')->name('set.password');
+    Route::post('setPassword', 'Auth\VerificationController@setPassword')->name('set.password');
     Route::group(['middleware' => 'account'], function() {
         Route::group(['middleware' => ['role:admin']], function () {
             Route::resource('/role', 'RoleController')->except([
