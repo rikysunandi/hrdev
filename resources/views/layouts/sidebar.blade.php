@@ -65,17 +65,25 @@
                             <li>
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-apps"></i><span> Fit & Proper <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="submenu">
-                                    <li>
+                                    <!--li>
                                         <a href="{{ URL::to('/') }}/fitpro/mBidang" class="waves-effect"><i class="mdi mdi-apps"></i><span> Master Posisi </span></a>
-                                    </li>
+                                    </li-->
                                     <li>
-                                        <a href="{{ URL::to('/') }}/fitpro/mSoftKompetensi" class="waves-effect"><i class="mdi mdi-apps"></i><span> Master SoftKompetensi </span></a>
+                                        <a href="{{ URL::to('/') }}/fitpro/mSoftKompetensi" class="waves-effect"><i class="mdi mdi-apps"></i><span> M SoftKompetensi </span></a>
                                     </li> 
                                     <li>
-                                        <a href="{{ URL::to('/') }}/fitpro/mKompetensi" class="waves-effect"><i class="mdi mdi-apps"></i><span> Master Kompetensi </span></a>
+                                        <a href="{{ URL::to('/') }}/fitpro/mKompetensi" class="waves-effect"><i class="mdi mdi-apps"></i><span> M Kompetensi </span></a>
                                     </li>
                                     <li>
-                                        <a href="{{ URL::to('/') }}/fitpro/mKeyBehaviour" class="waves-effect"><i class="mdi mdi-apps"></i><span> Master Key Behaviour </span></a>
+                                        <a href="{{ URL::to('/') }}/fitpro/mKeyBehaviour" class="waves-effect"><i class="mdi mdi-apps"></i><span> M Key Behaviour </span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-apps"></i><span> Talent Pool <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="{{ URL::to('/') }}/talent/daftar_talent" class="waves-effect"><i class="mdi mdi-apps"></i><span> Daftar Talent </span></a>
                                     </li>
                                 </ul>
                             </li>
