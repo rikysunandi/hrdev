@@ -68,7 +68,9 @@ $(document).ready(function() {
         { "data": "personnel_subarea" },
         { "data": "organizational_unit" },
         { "data": "jenjang", "width": "15%" },
-        { "data": "level_min" },	
+        { "data": "level_kompetensi" },	
+        { "data": "profesi" },	
+        { "data": "pendidikan" },	
 		{
             render: function (data, type, row) {
             	console.log('data', data);

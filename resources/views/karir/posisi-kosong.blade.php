@@ -561,6 +561,8 @@
                                                 <th>Org Unit</th>
                                                 <th>Jenjang</th>
                                                 <th>Level</th>
+                                                <th>Profesi</th>
+                                                <th>Pendidikan</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
