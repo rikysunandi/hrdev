@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <!-- end row -->
-{{-- 
+{{--
                         <div class="row">
                             <div class="col-12">
                                 <div class="card m-b-20">
@@ -551,7 +551,7 @@
                                             buttons on a page that will interact with a DataTable. The core library
                                             provides the based framework upon which plug-ins can built.
                                         </p> --}}
-                                        
+
 
                                         <table id="datatable-posisi-kosong" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
@@ -566,19 +566,18 @@
                                             </thead>
 
 
-                                            
+
                                         </table>
                                     </div>
                                 </div>
                             </div> <!-- end col -->
                         </div> <!-- end row -->
 
-
-
                     </div> <!-- container-fluid -->
 @endsection
 
 @section('script')
+                    <
         <!-- Required datatable js -->
         <script src="{{ URL::asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
