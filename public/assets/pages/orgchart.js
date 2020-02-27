@@ -107,9 +107,11 @@ $(document).ready(function() {
 
 		var first_time = true;
     	$('#orgchart').empty();
+
     	resetProfile();
 		$('.profile-card').hide();
     	$.blockUI({message: '<h5 class="p-10">Mohon menunggu...</h5>'});
+
     	$.getJSON('/organisasi/get_chart_data', {
 	        prev_per_no: $('#prev_per_no').val(),
 	        ko1: '01',
@@ -182,7 +184,9 @@ $(document).ready(function() {
 
 	    		console.log(node);
 
+
                 populateProfile(node);
+
 
                 return false;
             });
