@@ -132,8 +132,6 @@
                                                         <li><a id="detail" href="#"><i class="fas fa-info-circle" aria-hidden="true"></i></a></li>
                                                     </ul>
                                                 </span>
-
-                                                <button id="btn_kandidat" type="button" class="btn btn-primary waves-effect waves-light"><i class="ti-search"></i> Cari Kandidat</button>
                                             </div>
                                         </div>
                                     </div>

@@ -92,21 +92,19 @@ class OrganisasiController extends Controller
         $bulan = substr($blth,0,2);
     	$tahun = substr($blth,3,4);
 
-        $data = DB::select('select * from bso.sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?, ?, ?)', [$prev_per_no, $ko1, $ko2, $ko3, $ko4, $ko5, $fungsional, $tahun, $bulan]);
+        $data = DB::select('select * from sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?, ?, ?)', [$prev_per_no, $ko1, $ko2, $ko3, $ko4, $ko5, $fungsional, $tahun, $bulan]);
 
-        $ftk = DB::select("select * from bso.organisasi_ftk LIMIT 1");
+        $ftk = DB::select("select * from vw_ko_unit
+                            where kode = '0101'
+                            order by LENGTH(kode) DESC LIMIT 1");
 
-        $pilih = $data[0];
         foreach ($data as $k => $v) {
             if(file_exists(public_path().'/assets/images/photos/'.$v->prev_per_no.'.jpg'))
                 $data[$k]->img = asset('assets/images/photos/'.$v->prev_per_no.'.jpg');
             else
                 $data[$k]->img = asset('assets/images/users/blank-avatar.jpg');
-
-            if($prev_per_no<>'' and $v->prev_per_no==$prev_per_no)
-                $pilih = $v;
         }
 
-        return response()->json([$data, $pilih, $ftk[0]]);
+        return response()->json([$data, $ftk[0]]);
     }
 }
