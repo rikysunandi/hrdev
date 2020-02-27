@@ -17,7 +17,7 @@ $(document).ready(function() {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: APP_URL+'/data/get-pegawai'
     });
-    
+
     // Initializing the typeahead with remote dataset without highlighting
     $('input#prev_per_no_cari').typeahead(null, {
         name: 'pegawai',
@@ -34,7 +34,7 @@ $(document).ready(function() {
             }
             //suggestion: Handlebars.compile('<div><strong>{{prev_per_no}}</strong> – {{personnel_number}}</div>')
         },
-        limit: 10 
+        limit: 10
     });
 
     $('input#prev_per_no_cari').bind('typeahead:select', function(ev, suggestion) {
@@ -47,14 +47,69 @@ $(document).ready(function() {
 
 		$('#prev_per_no').val(suggestion.prev_per_no);
         //window.location.href = APP_URL+'/profile/'+suggestion.prev_per_no;
-        //$.redirect(APP_URL+'/profile', {prev_per_no: suggestion.prev_per_no, _token: csrf_token}, "POST"); 
+        //$.redirect(APP_URL+'/profile', {prev_per_no: suggestion.prev_per_no, _token: csrf_token}, "POST");
     });
+
+    function populateProfile(node){
+
+    	if((node.prev_per_no=='' || node.prev_per_no=='null' || !node.prev_per_no)){
+    		/* POSISI KOSONG NIH */
+    		$('.profile-card dl').hide();
+    		$('.profile-card span ul').hide();
+	    	$('#avatar').attr('src', node.img);
+	        $('#nama').html(node.fullname);
+	        $('#jabatan').html(node.pos_ltext_name);
+			$('.profile-card #btn_kandidat').show();
+
+    	}else{
+    		$('.profile-card dl').show();
+    		$('.profile-card span ul').show();
+			$('.profile-card #btn_kandidat').hide();
+	    	$('#avatar').attr('src', node.img);
+	        $('#nama').html(node.fullname);
+	        $('#jabatan').html(node.position_ltext);
+	        $('#nip').html(node.prev_per_no);
+	        $('#ttl').html(node.place_of_birth+', '+node.birthday);
+	        $('#grade').html(node.grade_name);
+	        $('#jenjang').html(node.main_group);
+	        $('#pendidikan').html(node.branch_of_study_text);
+	        $('#unit').html(node.sub_area_text);
+	        //$('#modal_detail').modal('show');
+
+	        $('#jabatan').removeClass();
+	    	$('#jabatan').addClass(node.tags);
+
+	    	if(node.email!='' && node.email!='null')
+	    		$('#email').attr('href', 'mailto:'+node.email);
+	    	if(node.telephone_num!='' && node.telephone_num!='null')
+	    		$('#telepon').attr('href', 'https://web.whatsapp.com/send?phone='+node.telephone_num);
+	    	$('#detail').click(function(e){
+	    		e.preventDefault();
+	    		$.redirect(APP_URL+'/profile', {prev_per_no: node.prev_per_no, _token: csrf_token}, "POST", "_blank");
+	    	});
+	    }
+    }
+
+    function resetProfile(){
+    	$('.profile-card dd').html('');
+    	$('.profile-card img').attr('src','');
+    	$('.profile-card a').attr('href','#');
+        $('#jabatan').removeClass();
+    }
+
 
     $('#btn_cari').click(function(){
 
     	console.log('Cari...');
+
+    	if($('#prev_per_no_cari').val()=='')
+    		$('#prev_per_no').val("");
+
+		var first_time = true;
     	$('#orgchart').empty();
-    	$.blockUI({message: '<h1 class="p-10">Mohon menunggu...</h1>'});
+    	resetProfile();
+		$('.profile-card').hide();
+    	$.blockUI({message: '<h5 class="p-10">Mohon menunggu...</h5>'});
     	$.getJSON('/organisasi/get_chart_data', {
 	        prev_per_no: $('#prev_per_no').val(),
 	        ko1: '01',
@@ -65,7 +120,8 @@ $(document).ready(function() {
 	        blth: $('#blth').val(),
 	    }, function(data) {
 
-	    	var ftk = data[1];
+	    	var pilih = data[1];
+	    	var ftk = data[2];
 	    	data = data[0];
 
 	    	var ftk_real=0;
@@ -103,6 +159,7 @@ $(document).ready(function() {
                     img_0: "img"
                 },
                 menu: {
+                    png: { text: "Export PNG" },
                     svg: { text: "Export SVG" },
                     csv: { text: "Export CSV" }
                 },
@@ -124,38 +181,32 @@ $(document).ready(function() {
 	    	chart.on('click', function (sender, node) {
 
 	    		console.log(node);
-                $('#avatar').attr('src', node.img);
-                $('#nama').html(node.name);
-                $('#jabatan').html(node.nama_panjang_posisi);
-                $('#nip').html(node.prev_per_no);
-                $('#ttl').html(node.birthplace+', '+node.birth_date);
-                $('#grade').html(node.ps_group);
-                $('#jenjang').html(node.jenjang);
-                $('#pendidikan').html(node.branch_of_study_01);
-                $('#unit').html(node.personnel_subarea);
-                //$('#modal_detail').modal('show');
 
-                $('#jabatan').removeClass();
-            	$('#jabatan').addClass(node.tags[0]);
-
-            	if(node.email!='')
-            		$('#email').attr('href', 'mailto:'+node.email);
-            	if(node.telephone_no!='')
-            		$('#telepon').attr('href', 'https://web.whatsapp.com/send?phone='+node.telephone_no);
-            	$('#detail').click(function(e){
-            		e.preventDefault();
-            		$.redirect(APP_URL+'/profile', {prev_per_no: node.prev_per_no, _token: csrf_token}, "POST", "_blank");
-            	});
+                populateProfile(node);
 
                 return false;
             });
 
-            $('#ftk').html(ftk.kotak_organisasi+' '+ftk_real+' / '+ftk.pagu_ftk);
+
+            $('#ftk').html(ftk.org_ltext+' '+ftk.real_ftk+' / '+ftk.pagu_ftk);
 
 	    	$('#collapseOne').collapse();
 	    	$('.profile-card').show();
 
-	    	setTimeout($.unblockUI, 2000);
+	    	setTimeout($.unblockUI, 500);
+
+	    	chart.on('redraw', function (sender) {
+
+	            if(first_time){
+			    	console.log('pilih', pilih);
+			    	chart.ripple(parseInt(pilih.id));
+			    	populateProfile(pilih);
+			    	first_time = false;
+			    }
+
+	        });
+
+
 
 
 	    });
@@ -217,6 +268,6 @@ $(document).ready(function() {
 	    });
 	}
 
-    
+
 
 });
