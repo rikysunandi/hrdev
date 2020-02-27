@@ -17,20 +17,12 @@ Route::get('/', function() {
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');
-Route::get('/set-session', 'HomeController@setSession');
-Route::get('/data/get-pegawai', 'HomeController@getPegawai');
-Route::get('/dashboard/get_data', 'HomeController@getDashboardData');
-Route::get('/dashboard/get_mutasi_terbaru', 'HomeController@getMutasiTebaru');
-Route::get('/dashboard/get_pensiun_terbaru', 'HomeController@getPensiunTebaru');
-Route::post('/organisasi/chart', 'OrganisasiController@chart');
-Route::get('/organisasi/chart', 'OrganisasiController@chart');
-Route::get('/organisasi/get_chart_data', 'OrganisasiController@getChartData');
-Route::get('/referensi/get_ko1', 'ReferensiController@getKO1');
-Route::get('/referensi/get_ko2/{ko_1}', 'ReferensiController@getKO2');
-Route::get('/referensi/get_ko3/{ko_2}', 'ReferensiController@getKO3');
-Route::get('/referensi/get_ko4/{ko_3}', 'ReferensiController@getKO4');
+Route::group(['middleware' => 'auth'], function() {
+    Route::group(['middleware' => 'account'], function() {
+        Route::group(['middleware' => ['role:admin']], function () {
+            Route::resource('/role', 'RoleController')->except([
+                'create', 'show', 'edit', 'update'
+            ]);
 
             Route::resource('/users', 'UserController')->except([
                 'show'
