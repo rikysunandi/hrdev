@@ -8,16 +8,6 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
@@ -28,7 +18,6 @@ class HomeController extends Controller
 
         return view('index');
     }
-
 
     /**
      * Show the application dashboard.
@@ -50,8 +39,7 @@ class HomeController extends Controller
      */
     public function getPegawai()
     {
-        $pegawai = DB::select("select pers_no, prev_per_no, personnel_number 
-            from vw_pegawai where org2_code='15000001' ");
+        $pegawai = DB::select('select pers_no, prev_per_no, personnel_number, position, business_area, personnel_subarea from pegawai');
 
         return response()->json($pegawai);
     }

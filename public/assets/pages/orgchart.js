@@ -17,7 +17,7 @@ $(document).ready(function() {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: APP_URL+'/data/get-pegawai'
     });
-    
+
     // Initializing the typeahead with remote dataset without highlighting
     $('input#prev_per_no_cari').typeahead(null, {
         name: 'pegawai',
@@ -34,7 +34,7 @@ $(document).ready(function() {
             }
             //suggestion: Handlebars.compile('<div><strong>{{prev_per_no}}</strong> – {{personnel_number}}</div>')
         },
-        limit: 10 
+        limit: 10
     });
 
     $('input#prev_per_no_cari').bind('typeahead:select', function(ev, suggestion) {
@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 		$('#prev_per_no').val(suggestion.prev_per_no);
         //window.location.href = APP_URL+'/profile/'+suggestion.prev_per_no;
-        //$.redirect(APP_URL+'/profile', {prev_per_no: suggestion.prev_per_no, _token: csrf_token}, "POST"); 
+        //$.redirect(APP_URL+'/profile', {prev_per_no: suggestion.prev_per_no, _token: csrf_token}, "POST");
     });
 
     function populateProfile(node){
@@ -183,7 +183,8 @@ $(document).ready(function() {
 	    	chart.on('click', function (sender, node) {
 
 	    		console.log(node);
-                
+
+
                 populateProfile(node);
 
 
@@ -199,7 +200,7 @@ $(document).ready(function() {
 	    	setTimeout($.unblockUI, 500);
 
 	    	chart.on('redraw', function (sender) {
-	            
+
 	            if(first_time){
 			    	console.log('pilih', pilih);
 			    	chart.ripple(parseInt(pilih.id));
@@ -207,7 +208,7 @@ $(document).ready(function() {
 			    	first_time = false;
 			    }
 
-	        });  
+	        });
 
 
 
@@ -271,6 +272,6 @@ $(document).ready(function() {
 	    });
 	}
 
-    
+
 
 });
