@@ -19,22 +19,22 @@
 
                         <li class="dropdown notification-list d-none d-sm-block m-r-20">
                             <form role="mode" class="app-search">
-                                <div class="input-group mb-0 mt-4"> 
+                                <div class="input-group mb-0 mt-4">
                                     <label class="mb-0 mt-1 m-r-5">Dark Mode</label>
                                     <input type="checkbox" class="form-control" id="sw_darkmode" switch="none"/>
                                         <label for="sw_darkmode" data-on-label="Yes"
                                                 data-off-label="No"></label>
                                 </div>
-                            </form> 
+                            </form>
                         </li>
 
                         <li class="dropdown notification-list d-none d-sm-block">
                             <form role="search" class="app-search">
-                                <div class="form-group mb-0"> 
+                                <div class="form-group mb-0">
                                     <input id="top_prev_per_no" type="text" class="typeahead tt-query form-control" autocomplete="off" spellcheck="false" placeholder="Search..">
                                     <button type="submit"><i class="fa fa-search"></i></button>
                                 </div>
-                            </form> 
+                            </form>
                         </li>
 
                         <li class="dropdown notification-list">
@@ -78,7 +78,7 @@
                                 <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
                                     View all <i class="fi-arrow-right"></i>
                                 </a>
-                            </div>        
+                            </div>
                         </li>
                         <li class="dropdown notification-list">
                             <div class="dropdown notification-list nav-pro-img">
@@ -91,8 +91,16 @@
                                     <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings m-r-5"></i> Settings</a>
                                     <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5"></i> Lock screen</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="logout"><i class="mdi mdi-power text-danger"></i> Logout</a>
-                                </div>                                                                    
+                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        <i class="mdi mdi-power text-danger"></i>
+                                            {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
                             </div>
                         </li>
 
@@ -109,7 +117,7 @@
                                 <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Create
                                 </a>
-                                
+
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>
