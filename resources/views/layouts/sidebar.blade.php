@@ -15,6 +15,7 @@
                             <li>
                                 <a href="{{ URL::to('/') }}/calendar" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Calendar </span></a>
                             </li>
+
                             <li>
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-email-outline"></i><span> Email <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="submenu">
@@ -26,33 +27,11 @@
                             <li>
                                 <a href="{{ URL::to('/') }}/profile" class="waves-effect"><i class="far fa-user"></i><span> Profile </span></a>
                             </li>
-
-                            @role('admin')
-                            <li class="menu-title">Manajemen Users</li>
-                            <li>
-                                <a href="{{ route('users.index') }}" class="waves-effect">
-                                    <i class="mdi mdi-file-tree"></i>
-                                    <span> Users </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('role.index') }}" class="waves-effect">
-                                    <i class="mdi mdi-file-tree"></i>
-                                    <span> Role </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('users.roles_permission') }}" class="waves-effect">
-                                    <i class="mdi mdi-file-tree"></i>
-                                    <span> Role Permission </span>
-                                </a>
-                            </li>
-                            @endrole
-
                             <li class="menu-title">Organisasi</li>
                             <li>
                                 <a href="{{ URL::to('/') }}/organisasi/chart" class="waves-effect"><i class="mdi mdi-file-tree"></i><span> Struktur Organisasi </span></a>
                             </li>
+
                             <li>
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-email-outline"></i><span> Dummy <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="submenu">
@@ -61,7 +40,6 @@
                                     <li><a href="{{ URL::to('/') }}/email-compose">Email Compose</a></li>
                                 </ul>
                             </li>
-
                             <li class="menu-title">Karir dan Pengembangan SDM</li>
                             <li>
                                 <a href="{{ URL::to('/') }}/karir/posisi-kosong" class="waves-effect"><i class="mdi mdi-account-off"></i><span> Daftar Posisi Kosong </span></a>
@@ -92,7 +70,7 @@
                                     </li>
                                     <li>
                                         <a href="{{ URL::to('/') }}/fitpro/mSoftKompetensi" class="waves-effect"><i class="mdi mdi-apps"></i><span> Master SoftKompetensi </span></a>
-                                    </li>
+                                    </li> 
                                     <li>
                                         <a href="{{ URL::to('/') }}/fitpro/mKompetensi" class="waves-effect"><i class="mdi mdi-apps"></i><span> Master Kompetensi </span></a>
                                     </li>
@@ -101,7 +79,7 @@
                                     </li>
                                 </ul>
                             </li>
-
+                            
                             <li class="menu-title">Components</li>
 
                             <li>
