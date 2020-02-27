@@ -84,6 +84,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/fitpro/mKeyBehaviour', 'FitproController@mKeyBehaviour');
         Route::get('/fitpro/mKeyBehaviour/get-data', 'FitproController@getmKeyBehaviourData');
         //Route::get('/karir/posisi-kosong/get-data', 'KarirController@getPosisiKosongData');
+
+        /* daftar talent */
+        Route::get('/talent/daftar_talent', 'TalentController@daftar_talent');
+        Route::get('/talent/daftar_talent/get-data', 'TalentController@getdaftar_talentData');
     });
 });
 
