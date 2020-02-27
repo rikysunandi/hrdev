@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-	$.getJSON('/referensi/get_ko2/01', function(data){
+	$.getJSON('/referensi/get_ko2/15000000', function(data){
 	    $('#ko_2').empty()
 	    		.append('<option selected disabled>Pilih Organisasi I</option>');
 	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');

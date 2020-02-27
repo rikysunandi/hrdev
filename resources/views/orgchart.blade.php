@@ -56,29 +56,33 @@
                                             <input id="prev_per_no_cari" type="text" class="typeahead form-control" autocomplete="off" spellcheck="false" " placeholder="NIP / Nama Pegawai">
                                         </div>
                                         <input type="hidden" id="prev_per_no" name="prev_per_no" value="<?php echo (isset($_POST['prev_per_no']))? $_POST['prev_per_no']:'' ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <select id="ko_2" class="custom-select custom-select-sm m-r-10 m-b-10 col-lg-2 col-sm-12">
-                                            <option selected disabled>Pilih Organisasi I</option>
-                                        </select>
-                                        <select id="ko_3" class="custom-select custom-select-sm m-r-10 m-b-10 col-lg-2 col-sm-12">
-                                            <option selected disabled>Pilih Organisasi II</option>
-                                        </select>
-                                        <select id="ko_4" class="custom-select custom-select-sm m-r-10 m-b-10 col-lg-2 col-sm-12">
-                                            <option selected disabled>Pilih Organisasi III</option>
-                                        </select>
-                                        <div class="input-group col-lg-2 col-sm-12">
+
+                                        <div class="input-group col-lg-3 col-sm-2 m-b-10">
+                                            <input id="blth" type="text" class="form-control col-sm" placeholder="dd/yyyy" value="<?php echo date('m/Y') ?>" />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="input-group col-lg-3 col-sm-12 m-b-10">
                                             <label class="m-r-10">Fungsional</label>
                                             <input type="checkbox" id="sw_fungsional" switch="none" checked/>
                                                 <label for="sw_fungsional" data-on-label="Ya"
                                                         data-off-label="Tidak"></label>
                                         </div>
-                                        <div class="input-group col-sm-2">
-                                            <input id="blth" type="text" class="form-control col-sm" placeholder="dd/yyyy" value="<?php echo date('m/Y') ?>">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                                            </div>
-                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <select id="ko_2" class="custom-select custom-select-sm m-r-10 m-b-10 col-lg-3 col-sm-12">
+                                            <option selected disabled>Pilih Organisasi I</option>
+                                        </select>
+                                        <select id="ko_3" class="custom-select custom-select-sm m-r-10 m-b-10 col-lg-3 col-sm-12">
+                                            <option selected disabled>Pilih Organisasi II</option>
+                                        </select>
+                                        <select id="ko_4" class="custom-select custom-select-sm m-r-10 m-b-10 col-lg-3 col-sm-12">
+                                            <option selected disabled>Pilih Organisasi III</option>
+                                        </select>
+                                        <select id="ko_5" class="custom-select custom-select-sm m-r-10 m-b-10 col-lg-3 col-sm-12">
+                                            <option selected disabled>Pilih Organisasi IV</option>
+                                        </select>
                                     </div>
                                 </form>
                                 <div class="text-right m-t-10">
@@ -95,10 +99,10 @@
                         <div class="card m-b-10">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-8 col-sm-8 p-10">
+                                    <div class="col-9 col-sm-9 p-10">
                                         <div style="width: 100%; height: 560px;" id="orgchart"></div>
                                     </div>
-                                    <div class="col-4 col-sm-4 p-10">
+                                    <div class="col-3 col-sm-3 p-10">
                                         <div class="profile-card hidden">
                                             <div class="box">
                                                 <div class="img">
@@ -114,7 +118,7 @@
                                                   <dd id="grade" class="col-sm-7">&nbsp;</dd>
                                                   <dt class="col-sm-5">JENJANG</dt>
                                                   <dd id="jenjang" class="col-sm-7">&nbsp;</dd>
-                                                  <dt class="col-sm-5">PENDIDIKAN</dt>
+                                                  <dt class="col-sm-5">STUDI</dt>
                                                   <dd id="pendidikan" class="col-sm-7">&nbsp;</dd>
                                                   <dt class="col-sm-5">UNIT</dt>
                                                   <dd id="unit" class="col-sm-7">&nbsp;</dd>
@@ -172,5 +176,5 @@
         <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
         <script src="{{ URL::asset('assets/plugins/orgchart/orgchart.js')}}"></script>
 
-		<script src="{{ URL::asset('assets/pages/orgchart.js')}}"></script>
+        <script src="{{ URL::asset('assets/pages/orgchart.js')}}"></script>
 @endsection

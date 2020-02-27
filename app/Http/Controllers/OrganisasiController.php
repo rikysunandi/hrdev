@@ -80,16 +80,17 @@ class OrganisasiController extends Controller
      */
     public function getChartData(Request $request)
     {
-    	// dd($request);
+        // dd($request);
         $prev_per_no = $request->input('prev_per_no');
-    	$ko1 = $request->input('ko1');
-    	$ko2 = $request->input('ko2');
-    	$ko3 = $request->input('ko3');
+        $ko1 = $request->input('ko1');
+        $ko2 = $request->input('ko2');
+        $ko3 = $request->input('ko3');
         $ko4 = $request->input('ko4');
-    	$fungsional = ($request->input('fungsional')=='false')?'T':'Y';
-    	$blth = $request->input('blth');
+        $ko5 = $request->input('ko5');
+        $fungsional = ($request->input('fungsional')=='false')?'T':'Y';
+        $blth = $request->input('blth');
         $bulan = substr($blth,0,2);
-    	$tahun = substr($blth,3,4);
+        $tahun = substr($blth,3,4);
 
         $data = DB::select('select * from bso.sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?, ?, ?)', [$prev_per_no, $ko1, $ko2, $ko3, $ko4, $ko5, $fungsional, $tahun, $bulan]);
 

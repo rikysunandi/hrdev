@@ -17,7 +17,7 @@ $(document).ready(function() {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: APP_URL+'/data/get-pegawai'
     });
-
+    
     // Initializing the typeahead with remote dataset without highlighting
     $('input#prev_per_no_cari').typeahead(null, {
         name: 'pegawai',
@@ -30,11 +30,13 @@ $(document).ready(function() {
               '</div>'
             ].join('\n'),
             suggestion: function(data) {
-                return '<p><strong>' + data.prev_per_no + '</strong> – ' + data.personnel_number + '</p>';
+                return '<div class="row no-marginLR">'+
+                	'<div class="col-3 no-padding"><img src="'+data.img+'" width="48" height="48" /></div>'+
+                	'<div class="col-9"><strong>' + data.prev_per_no + '</strong><br/>' + data.personnel_number + '</div></row>';
             }
             //suggestion: Handlebars.compile('<div><strong>{{prev_per_no}}</strong> – {{personnel_number}}</div>')
         },
-        limit: 10
+        limit: 10 
     });
 
     $('input#prev_per_no_cari').bind('typeahead:select', function(ev, suggestion) {
@@ -44,10 +46,11 @@ $(document).ready(function() {
 		$('#ko_2').append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#ko_3').empty().append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#ko_4').empty().append('<option selected value="00">SEMUA ORGANISASI</option>');
+		$('#ko_5').empty().append('<option selected value="00">SEMUA ORGANISASI</option>');
 
 		$('#prev_per_no').val(suggestion.prev_per_no);
         //window.location.href = APP_URL+'/profile/'+suggestion.prev_per_no;
-        //$.redirect(APP_URL+'/profile', {prev_per_no: suggestion.prev_per_no, _token: csrf_token}, "POST");
+        //$.redirect(APP_URL+'/profile', {prev_per_no: suggestion.prev_per_no, _token: csrf_token}, "POST"); 
     });
 
     function populateProfile(node){
@@ -107,17 +110,16 @@ $(document).ready(function() {
 
 		var first_time = true;
     	$('#orgchart').empty();
-
     	resetProfile();
 		$('.profile-card').hide();
     	$.blockUI({message: '<h5 class="p-10">Mohon menunggu...</h5>'});
-
     	$.getJSON('/organisasi/get_chart_data', {
 	        prev_per_no: $('#prev_per_no').val(),
-	        ko1: '01',
+	        ko1: '15000000',
 	        ko2: $('#ko_2').val(),
 	        ko3: $('#ko_3').val(),
 	        ko4: $('#ko_4').val(),
+	        ko5: $('#ko_5').val(),
 	        fungsional: $('#sw_fungsional').is(":checked"),
 	        blth: $('#blth').val(),
 	    }, function(data) {
@@ -154,10 +156,10 @@ $(document).ready(function() {
 	    		layout: OrgChart.mixed,
                 scaleInitial: OrgChart.match.boundary,
                 nodeBinding: {
-                    field_0: "title",
-                    field_1: "personnel_number",
+                    field_0: "pos_stext_name",
+                    field_1: "fullname",
                     field_2: "prev_per_no",
-                    field_3: "tanggal_masuk",
+                    field_3: "permanent_date",
                     img_0: "img"
                 },
                 menu: {
@@ -171,22 +173,20 @@ $(document).ready(function() {
                     fit: true,
                     expandAll: false
                 },
-                nodeMenu:{
-                    details: {text:"Details"},
-                    edit: {text:"Edit"},
-                    add: {text:"Add"},
-                    remove: {text:"Remove"}
-                },
+                // nodeMenu:{
+                //     details: {text:"Details"},
+                //     edit: {text:"Edit"},
+                //     add: {text:"Add"},
+                //     remove: {text:"Remove"}
+                // },
                 nodes: data
 	    	});
 
 	    	chart.on('click', function (sender, node) {
 
 	    		console.log(node);
-
-
+                
                 populateProfile(node);
-
 
                 return false;
             });
@@ -200,7 +200,7 @@ $(document).ready(function() {
 	    	setTimeout($.unblockUI, 500);
 
 	    	chart.on('redraw', function (sender) {
-
+	            
 	            if(first_time){
 			    	console.log('pilih', pilih);
 			    	chart.ripple(parseInt(pilih.id));
@@ -208,7 +208,7 @@ $(document).ready(function() {
 			    	first_time = false;
 			    }
 
-	        });
+	        });  
 
 
 
@@ -222,10 +222,11 @@ $(document).ready(function() {
 		$('#ko_2').append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#ko_3').append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#ko_4').append('<option selected value="00">SEMUA ORGANISASI</option>');
+		$('#ko_5').append('<option selected value="00">SEMUA ORGANISASI</option>');
 		$('#btn_cari').trigger( "click" );
     }else{
 
-	    $.getJSON('/referensi/get_ko2/01', function(data){
+	    $.getJSON('/referensi/get_ko2/15000000', function(data){
 		    $('#ko_2').empty()
 		    		.append('<option selected disabled>Pilih Organisasi I</option>');
 		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
@@ -234,6 +235,9 @@ $(document).ready(function() {
 		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
 		    $('#ko_4').empty()
 		    		.append('<option selected disabled>Pilih Organisasi III</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $('#ko_5').empty()
+		    		.append('<option selected disabled>Pilih Organisasi IV</option>');
 		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
 	    	$.each(data,function(i,v){
 	        	$('#ko_2').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
@@ -249,6 +253,9 @@ $(document).ready(function() {
 		    $('#ko_4').empty()
 		    		.append('<option selected disabled>Pilih Organisasi III</option>');
 		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $('#ko_5').empty()
+		    		.append('<option selected disabled>Pilih Organisasi IV</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
 		    $.getJSON('/referensi/get_ko3/'+$('#ko_2').val(), function(data){
 		    	$.each(data,function(i,v){
 		        	$('#ko_3').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
@@ -262,6 +269,9 @@ $(document).ready(function() {
 		    $('#ko_4').empty()
 	    			.append('<option selected disabled>Pilih Organisasi III</option>');
 		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $('#ko_5').empty()
+		    		.append('<option selected disabled>Pilih Organisasi IV</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
 		    $.getJSON('/referensi/get_ko4/'+$('#ko_3').val(), function(data){
 		    	$.each(data,function(i,v){
 
@@ -270,8 +280,22 @@ $(document).ready(function() {
 				$('#ko_4').append('<option value="00">SEMUA ORGANISASI</option>');
 		    });
 	    });
+
+	    $('#ko_4').change(function(){
+
+		    $('#ko_5').empty()
+		    		.append('<option selected disabled>Pilih Organisasi IV</option>');
+		    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+		    $.getJSON('/referensi/get_ko5/'+$('#ko_4').val(), function(data){
+		    	$.each(data,function(i,v){
+
+		        	$('#ko_5').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
+		    	});
+				$('#ko_5').append('<option value="00">SEMUA ORGANISASI</option>');
+		    });
+	    });
 	}
 
-
+    
 
 });
