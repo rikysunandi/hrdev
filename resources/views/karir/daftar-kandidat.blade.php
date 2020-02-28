@@ -10,14 +10,7 @@
 
 @section('content')
             <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-12">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('posisi.kososng') }}">Posisi Kosong</a></li>
-                            <li class="breadcrumb-item active">Daftar Kandidat</li>
-                        </ol>
-                    </div>
-                </div>
+
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box">
@@ -28,26 +21,26 @@
 
 
                     <div class="col-md-12">
-
-                                <div class="card m-b-20">
-                                    <div class="card-body">
-                                        <div class="row m-l-5">
-                                            <select id="ko_2" class="custom-select custom-select-sm col-3 col-sm-3 m-r-10">
-                                                <option selected disabled>Pilih Organisasi I</option>
-                                            </select>
-                                            <select id="ko_3" class="custom-select custom-select-sm col-3 col-sm-3 m-r-10">
-                                                <option selected disabled>Pilih Organisasi II</option>
-                                            </select>
-                                            <select id="ko_4" class="custom-select custom-select-sm col-3 col-sm-3 m-r-10">
-                                                <option selected disabled>Pilih Organisasi III</option>
-                                            </select>
-                                        </div>
-                                        <div class="text-right m-t-15">
-                                            <button id="btn_cari" type="button" class="btn btn-primary waves-effect waves-light"><i class="ti-search"></i> Cari</button>
-                                        </div>
+                        <form class="form-horizontal m-t-30" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+                            <div class="card m-b-20">
+                                <div class="card-body">
+                                    <div class="row m-l-5">
+                                        <select id="ko_2" class="custom-select custom-select-sm col-3 col-sm-3 m-r-10">
+                                            <option selected disabled>Jabatan</option>
+                                        </select>
+                                        <select id="ko_3" class="custom-select custom-select-sm col-3 col-sm-3 m-r-10">
+                                            <option selected disabled>Profesi</option>
+                                        </select>
+                                        <select id="ko_4" class="custom-select custom-select-sm col-3 col-sm-3 m-r-10">
+                                            <option selected disabled>Pendidikan</option>
+                                        </select>
+                                    </div>
+                                    <div class="text-right m-t-15">
+                                        <button id="btn_cari" type="submit" class="btn btn-primary waves-effect waves-light"><i class="ti-search"></i> Cari</button>
                                     </div>
                                 </div>
-
+                            </div>
+                        </form>
 
                         @card
                             @slot('title')
@@ -65,27 +58,32 @@
 
                                     @foreach ($kandidat as $key => $row)
                                         <div class="w3-col l3 m6  relPos w3-center ">
-                                            <div class="selectProduct w3-padding" data-nip="Nexus5" data-nama="Nexus 5" data-jabatan="" data-unit="130 g">
+                                            <div class="selectProduct w3-padding w3-profile-block" data-title="{{ $row->nipeg }}" data-id="{{ $row->fullname }}" data-nipeg="{{ $row->nipeg }}" data-nama="{{ $row->fullname }}" data-jabatan="{{ $row->profesi }}" data-unit="unit">
                                                 <a class="w3-btn-floating w3-light-grey addButtonCircular addToCompare">+</a>
                                                 <div>
-                                                    <img src="https://www.yaantra.com/ItemImages/Catalog/Products/ThumbNail/RCOne0054_4.jpg" class="imgFill productImg">
+                                                    <img width="100%" src="{{ URL::asset('assets/images/photos') }}/{{ $row->nipeg }}.jpg" class="imgFill productImg" onerror="this.style.display='none'">
                                                 </div>
-                                                <div>
+                                                <div class="w3-profile-table">
+                                                    <button id="{{ $row->nipeg }}" type="button"class="btn btn-primary addToCandidate">Pilih Kandidat</button>
                                                     <table>
                                                         <tr>
                                                             <td>NIP</td>
+                                                            <td>:</td>
                                                             <td>{{ $row->nipeg }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Nama</td>
+                                                            <td>:</td>
                                                             <td>{{ $row->fullname }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Jabatan</td>
+                                                            <td>:</td>
                                                             <td>{{ $row->profesi }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Unit</td>
+                                                            <td>:</td>
                                                             <td>unit</td>
                                                         </tr>
                                                     </table>
@@ -96,6 +94,27 @@
 
                                 </div>
                             </div>
+
+                            <!--preview panel-->
+                            <div class="w3-container  w3-center">
+                                <form class="form-horizontal m-t-30" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+                                    <div class="w3-row w3-card-4 w3-grey w3-round-large w3-border kandidatPanle w3-margin-top">
+                                        <div class="w3-row">
+                                            <div class="w3-col l9 m8 s6 w3-margin-top">
+                                                <h4>Kandidat</h4>
+                                            </div>
+                                            <div class="w3-col l3 m4 s6 w3-margin-top">
+
+                                                <button type="submit" class="w3-btn w3-round-small w3-white w3-border">Simpan</button>
+                                            </div>
+                                        </div>
+                                        <div class=" titleMargin w3-container kandidatPan">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--end of preview panel-->
+
                             <!--preview panel-->
                             <div class="w3-container  w3-center">
                                 <div class="w3-row w3-card-4 w3-grey w3-round-large w3-border comparePanle w3-margin-top">
@@ -132,7 +151,7 @@
                                         <h3><span>⚠</span>Error</h3>
                                     </header>
                                     <div class="w3-container">
-                                        <h4>Maximum of Three products are allowed for comparision</h4>
+                                        <h4>Maksimum hanya tiga kandidat untuk dibandingkan</h4>
 
                                     </div>
                                     <footer class="w3-container w3-right-align">

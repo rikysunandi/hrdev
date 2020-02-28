@@ -10,7 +10,10 @@ class KandidatController extends Controller
 {
     public function show(Request $request)
     {
-    	$daftarKandidat = DB::table("vw_data_talent")->get();
+    	$jabatan = DB::table("jabatan")->where('id',$request->input('jabatan_id'))->get();
+
+        $daftarKandidat = DB::table("vw_data_talent")->where('profesi',$jabatan[0]->profesi)->get();
+
 
         return view('karir.daftar-kandidat',['kandidat' => $daftarKandidat]);
     }

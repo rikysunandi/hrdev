@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -12,11 +13,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $pegawai = DB::table('pegawai')->get();
-
-        return view('index');
+        $user = Auth::user();
+        $request->session()->put('theme', $user->theme);
+        return view('index', compact('user'));
     }
 
     /**
@@ -39,7 +41,19 @@ class HomeController extends Controller
      */
     public function getPegawai()
     {
+<<<<<<< Updated upstream
         $pegawai = DB::select('select pers_no, prev_per_no, personnel_number, position, business_area, personnel_subarea from pegawai');
+=======
+        $pegawai = DB::select("select pers_no, prev_per_no, personnel_number
+            from vw_pegawai where org2_code='15000001' ");
+
+        foreach ($pegawai as $k => $v) {
+            if(file_exists(public_path().'/assets/images/photos/'.$v->prev_per_no.'.jpg'))
+                $pegawai[$k]->img = asset('assets/images/photos/'.$v->prev_per_no.'.jpg');
+            else
+                $pegawai[$k]->img = asset('assets/images/users/blank-avatar.jpg');
+        }
+>>>>>>> Stashed changes
 
         return response()->json($pegawai);
     }

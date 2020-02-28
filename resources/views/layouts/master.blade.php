@@ -5,7 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
         <title>HRDev - Human Resources Development</title>
-        @include('layouts.head')
+        @if(session('theme') == 1)
+            @include('layouts.head')
+        @else
+            @include('layouts.head-dark')
+        @endif
   </head>
 <body>
           <!-- Begin page -->
@@ -20,13 +24,13 @@
                 <div class="content">
       @yield('content')
                 </div> <!-- content -->
-    @include('layouts.footer')    
+    @include('layouts.footer')
             </div>
             <!-- ============================================================== -->
             <!-- End Right content here -->
             <!-- ============================================================== -->
     </div>
     <!-- END wrapper -->
-    @include('layouts.footer-script')    
+    @include('layouts.footer-script')
     </body>
 </html>
