@@ -14,7 +14,7 @@ class UpdateUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedTinyInteger('role_id')->after('email');
+            $table->tinyInteger('theme')->default(1)->after('email_verified_at');
         });
     }
 
@@ -26,7 +26,7 @@ class UpdateUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role_id');
+            $table->dropColumn('theme');
         });
     }
 }
