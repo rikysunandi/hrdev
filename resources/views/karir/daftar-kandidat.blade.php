@@ -58,7 +58,7 @@
 
                                     @foreach ($kandidat as $key => $row)
                                         <div class="w3-col l3 m6  relPos w3-center ">
-                                            <div class="selectProduct w3-padding w3-profile-block" data-title="{{ $row->nipeg }}" data-id="{{ $row->fullname }}" data-nipeg="{{ $row->nipeg }}" data-nama="{{ $row->fullname }}" data-jabatan="{{ $row->profesi }}" data-unit="{{ $row->org2_sname }}">
+                                            <div class="selectProduct w3-padding w3-profile-block" data-title="{{ $row->nipeg }}" data-id="{{ $row->fullname }}" data-nipeg="{{ $row->nipeg }}" data-nama="{{ $row->fullname }}" data-jabatan="{{ $row->jabatan }}" data-unit="{{ $row->org2_sname }}">
                                                 <a class="w3-btn-floating w3-light-grey addButtonCircular addToCompare">+</a>
                                                 <div>
                                                     <img width="100%" src="{{ URL::asset('assets/images/photos') }}/{{ $row->nipeg }}.jpg" class="imgFill productImg" onerror="this.onerror=null; this.src='{{ URL::asset('assets/images/users/blank-avatar.jpg') }}'">
@@ -79,7 +79,7 @@
                                                         <tr>
                                                             <td>Jabatan</td>
                                                             <td>:</td>
-                                                            <td>{{ $row->profesi }}</td>
+                                                            <td>{{ $row->jabatan }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Unit</td>

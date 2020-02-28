@@ -23,11 +23,9 @@
             listCandidate.splice($.inArray(productID, listCandidate), 1);
             var prod = productID.replace(" ", "");
             $('#' + prod).remove();
-            hideComparePanel();
-
+            hideCandidatePanel();
         }
         if (listCandidate.length > 1) {
-
             $(".cmprBtn").addClass("active");
             $(".cmprBtn").removeAttr('disabled');
         } else {
@@ -68,7 +66,6 @@
             var prod = productID.replace(" ", "");
             $('#' + prod).remove();
             hideComparePanel();
-
         }
         if (list.length > 1) {
 

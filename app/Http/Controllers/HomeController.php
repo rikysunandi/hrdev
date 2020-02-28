@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -22,10 +23,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $pegawai = DB::table('pegawai')->get();
-
+        $user = Auth::user();
+        $request->session()->put('theme', $user->theme);
         return view('index');
     }
 
@@ -50,7 +52,7 @@ class HomeController extends Controller
      */
     public function getPegawai()
     {
-        $pegawai = DB::select("select pers_no, prev_per_no, personnel_number 
+        $pegawai = DB::select("select pers_no, prev_per_no, personnel_number
             from vw_pegawai where org2_code='15000001' ");
 
         foreach ($pegawai as $k => $v) {
