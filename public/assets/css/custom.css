@@ -157,3 +157,12 @@ body.modal {
 .no-padding {
     padding: 0px;
 }
+/*
+.typeahead, .tt-query, .tt-hint {
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    outline: medium none;
+    padding: 8px 12px;
+    width: auto; !important;
+}*/

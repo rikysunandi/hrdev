@@ -12,6 +12,9 @@ $(document).ready(function() {
 	    $('#ko_4').empty()
 	    		.append('<option selected disabled>Pilih Organisasi III</option>');
 	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+	    $('#ko_5').empty()
+	    		.append('<option selected disabled>Pilih Organisasi IV</option>');
+	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
     	$.each(data,function(i,v){
         	$('#ko_2').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
     	});
@@ -26,6 +29,9 @@ $(document).ready(function() {
 	    $('#ko_4').empty()
 	    		.append('<option selected disabled>Pilih Organisasi III</option>');
 	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+	    $('#ko_5').empty()
+	    		.append('<option selected disabled>Pilih Organisasi IV</option>');
+	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
 	    $.getJSON('/referensi/get_ko3/'+$('#ko_2').val(), function(data){
 	    	$.each(data,function(i,v){
 	        	$('#ko_3').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
@@ -39,12 +45,29 @@ $(document).ready(function() {
 	    $('#ko_4').empty()
     			.append('<option selected disabled>Pilih Organisasi III</option>');
 	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+	    $('#ko_5').empty()
+	    		.append('<option selected disabled>Pilih Organisasi IV</option>');
+	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
 	    $.getJSON('/referensi/get_ko4/'+$('#ko_3').val(), function(data){
 	    	$.each(data,function(i,v){
 
 	        	$('#ko_4').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
 	    	});
 			$('#ko_4').append('<option value="00">SEMUA ORGANISASI</option>');
+	    });
+    });
+
+    $('#ko_4').change(function(){
+
+	    $('#ko_5').empty()
+	    		.append('<option selected disabled>Pilih Organisasi IV</option>');
+	    		//.append('<option value="XX">TIDAK PILIH ORGANISASI</option>');
+	    $.getJSON('/referensi/get_ko5/'+$('#ko_4').val(), function(data){
+	    	$.each(data,function(i,v){
+
+	        	$('#ko_5').append('<option value="'+v.kode+'">'+v.singkatan+'</option>');
+	    	});
+			$('#ko_5').append('<option value="00">SEMUA ORGANISASI</option>');
 	    });
     });
 
@@ -64,13 +87,10 @@ $(document).ready(function() {
 	},
 
     columns: [
-        { "data": "jabatan", "width": "35%" },
-        { "data": "personnel_subarea" },
-        { "data": "organizational_unit" },
-        { "data": "jenjang", "width": "15%" },
-        { "data": "level_kompetensi" },
-        { "data": "profesi" },
-        { "data": "pendidikan" },
+        { "data": "pos_ltext_name", "width": "35%" },
+        { "data": "org_name", "width": "25%" },
+        { "data": "job_main_group_text", "width": "10%" },
+        { "data": "tgl_mulai_kosong", "width": "10%" },
 		{
             render: function (data, type, row) {
             	console.log('data', data);
@@ -80,11 +100,15 @@ $(document).ready(function() {
                             '<input type="hidden" name="_token" value="'+csrf_token+'"></input>'+
                             '<input type="hidden" name="jabatan_id" value="'+row['id']+'">'+
                 			'<button type="submit" class="btn btn-sm btn-outline-primary waves-effect waves-light">'+
+                				'<i class="mdi mdi-file-tree"></i> Bagan Org'+
+                			'</button><br/>'+
+                			'<button type="submit" class="btn btn-sm btn-outline-primary waves-effect waves-light">'+
                 				'<i class="mdi mdi-account-search"></i> Kandidat'+
                 			'</button></form>';
             }
         }
     ],
+	"order": [[ 3, 'asc' ]],
     deferRender: true,
     //serverSide: true,
     deferLoading: 0, // here
@@ -130,7 +154,7 @@ $(document).ready(function() {
     $('#btn_cari').click(function(){
 
     	//$.blockUI({message: '<h1 class="p-10">Mohon menunggu...</h1>'});
-    	table.ajax.url('/karir/posisi-kosong/get-data?ko1=01&ko2='+$('#ko_2').val()+'&ko3='+$('#ko_3').val()+'&ko4='+$('#ko_4').val()+'&fungsional='+$('#sw_fungsional').is(":checked")).load(
+    	table.ajax.url('/karir/posisi-kosong/get-data?ko1=01&ko2='+$('#ko_2').val()+'&ko3='+$('#ko_3').val()+'&ko4='+$('#ko_4').val()+'&ko5='+$('#ko_5').val()+'&fungsional='+$('#sw_fungsional').is(":checked")).load(
 	    function(data) {
 
 	    	console.log(data);

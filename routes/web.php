@@ -66,10 +66,12 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::post('/profile', 'Administrasi\ProfileController@index');
         Route::get('/profile', 'Administrasi\ProfileController@index');
-        Route::get('/profile/get-data/{prev_per_no}', 'Administrasi\ProfileController@getData');
-        Route::get('/profile/get-pendidikan/{prev_per_no}', 'Administrasi\ProfileController@getPendidikan');
-        Route::get('/profile/get-rjab/{prev_per_no}', 'Administrasi\ProfileController@getRJab');
-        Route::get('/profile/get-talenta/{prev_per_no}', 'Administrasi\ProfileController@getTalenta');
+        Route::get('/profile/get-data/{pers_no}', 'Administrasi\ProfileController@getData');
+        Route::get('/profile/get-pendidikan/{pers_no}', 'Administrasi\ProfileController@getPendidikan');
+        Route::get('/profile/get-diklat/{pers_no}', 'Administrasi\ProfileController@getDiklat');
+        Route::get('/profile/get-rjab/{pers_no}', 'Administrasi\ProfileController@getRJab');
+        Route::get('/profile/get-talenta/{pers_no}', 'Administrasi\ProfileController@getTalenta');
+        Route::get('/profile/get-keluarga/{pers_no}', 'Administrasi\ProfileController@getKeluarga');
 
         Route::get('{any}', 'LexaController@index');
 

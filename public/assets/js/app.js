@@ -143,7 +143,7 @@
           console.log('ev: ', ev);
           console.log('Selection: ', suggestion);
             //window.location.href = APP_URL+'/profile/'+suggestion.prev_per_no;
-            $.redirect(APP_URL+'/profile', {prev_per_no: suggestion.prev_per_no, _token: csrf_token}, "POST"); 
+            $.redirect(APP_URL+'/profile', {pers_no: suggestion.pers_no, _token: csrf_token}, "POST"); 
         });
 
     },

@@ -91,7 +91,7 @@
                     Email
                 </button>
                 <button id="btn_orgchart" class="btn btn-outline-primary waves-effect waves-light mb-3">
-                    <i class="fa fa-check"></i>
+                    <i class="fas fa-boxes"></i>
                     Struktur Organisasi
                 </button>
             </section> 
@@ -108,6 +108,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" id="diklat-tab" data-toggle="tab" href="#diklat" role="tab" aria-controls="diklat" aria-selected="false">
+                            Diklat
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="rjab-tab" data-toggle="tab" href="#rjab" role="tab" aria-controls="rjab" aria-selected="false">
                             Riwayat Jabatan    
                         </a>
@@ -118,8 +123,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="dosir-tab" data-toggle="tab" href="#dosir" role="tab" aria-controls="dosir" aria-selected="false">
-                            Dosir
+                        <a class="nav-link" id="keluarga-tab" data-toggle="tab" href="#keluarga" role="tab" aria-controls="keluarga" aria-selected="false">
+                            Keluarga
                         </a>
                     </li>
                 </ul>
@@ -129,8 +134,9 @@
                             Basic Information
                         </h6>
                         <dl class="row mt-4 mb-4 pb-3">
+                            <input type="hidden" name="pers_no" id="pers_no" value="<?php echo (isset($_POST['pers_no']))?$_POST['pers_no']:''; ?>">
                             <dt class="col-sm-3">NIP</dt>
-                            <dd id="prev_per_no" class="col-sm-9"><?php echo (isset($_POST['prev_per_no']))?$_POST['prev_per_no']:''; ?></dd>
+                            <dd id="prev_per_no" class="col-sm-9"></dd>
 
                             <dt class="col-sm-3">Tempat, Tgl Lahir</dt>
                             <dd id="ttl" class="col-sm-9"></dd>
@@ -171,9 +177,21 @@
                         <table id="datatable-pendidikan" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
-                                <th>Tahun</th>
-                                <th>Level Pendidikan</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
                                 <th>Sekolah/Universitas</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade p-10" id="diklat" role="tabpanel" aria-labelledby="diklat-tab">
+                        <table id="datatable-diklat" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <thead>
+                            <tr>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Institusi</th>
+                                <th>Judul</th>
                             </tr>
                             </thead>
                         </table>
@@ -182,10 +200,11 @@
                         <table id="datatable-rjab" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
-                                <th>Tgl Jabat</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
                                 <th>Jabatan</th>
-                                <th>Bus Area</th>
-                                <th>Subarea</th>
+                                <th>Unit</th>
+                                <th>Jenjang</th>
                             </tr>
                             </thead>
                         </table>
@@ -194,24 +213,25 @@
                         <table id="datatable-talenta" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
-                                <th>Periode</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
                                 <th>Talenta</th>
-                                <th>Nilai Sasaran Kinerja</th>
-                                <th>Sasaran Kinerja</th>
-                                <th>Nilai Kompetensi Individu</th>
-                                <th>Indeks Sasaran Kompetensi</th>
+                                <th>Nilai</th>
+                                <th>Grade</th>
                             </tr>
                             </thead>
                         </table>
                     </div>
-                    <div class="tab-pane fade p-10" id="dosir" role="tabpanel" aria-labelledby="dosir-tab">
-                        <table id="datatable-dosir" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <div class="tab-pane fade p-10" id="keluarga" role="tabpanel" aria-labelledby="keluarga-tab">
+                        <table id="datatable-keluarga" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
-                                <th>Tgl Dokumen</th>
-                                <th>Judul</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Nama</th>
                                 <th>Jenis</th>
-                                <th>Download</th>
+                                <th>Gender</th>
+                                <th>Tgl Lahir</th>
                             </tr>
                             </thead>
                         </table>

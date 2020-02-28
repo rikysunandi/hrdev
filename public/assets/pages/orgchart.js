@@ -2,6 +2,7 @@
 $(document).ready(function() {
     "use strict";
 
+	moment.locale('id');
     $('.button-menu-mobile').trigger('click');
 
     //$('body').addClass('enlarged');
@@ -55,26 +56,29 @@ $(document).ready(function() {
 
     function populateProfile(node){
 
+    	resetProfile();
     	if((node.prev_per_no=='' || node.prev_per_no=='null' || !node.prev_per_no)){
     		/* POSISI KOSONG NIH */
     		$('.profile-card dl').hide();
     		$('.profile-card span ul').hide();
 	    	$('#avatar').attr('src', node.img);
-	        $('#nama').html(node.fullname);
+	        $('#nama').html('Kosong sejak '+moment(node.tgl_mulai_kosong).format('LL'));
 	        $('#jabatan').html(node.pos_ltext_name);
 			$('.profile-card #btn_kandidat').show();
+	        $('#jabatan').removeClass();
+	    	$('#jabatan').addClass('kosong');
 
     	}else{
     		$('.profile-card dl').show();
     		$('.profile-card span ul').show();
 			$('.profile-card #btn_kandidat').hide();
 	    	$('#avatar').attr('src', node.img);
-	        $('#nama').html(node.fullname);
-	        $('#jabatan').html(node.position_ltext);
+	        $('#nama').html(node.nama_pegawai);
+	        $('#jabatan').html(node.position_lname);
 	        $('#nip').html(node.prev_per_no);
 	        $('#ttl').html(node.place_of_birth+', '+node.birthday);
 	        $('#grade').html(node.grade_name);
-	        $('#jenjang').html(node.main_group);
+	        $('#jenjang').html(node.jenis_jabatan);
 	        $('#pendidikan').html(node.branch_of_study_text);
 	        $('#unit').html(node.sub_area_text);
 	        //$('#modal_detail').modal('show');
@@ -88,13 +92,15 @@ $(document).ready(function() {
 	    		$('#telepon').attr('href', 'https://web.whatsapp.com/send?phone='+node.telephone_num);
 	    	$('#detail').click(function(e){
 	    		e.preventDefault();
-	    		$.redirect(APP_URL+'/profile', {prev_per_no: node.prev_per_no, _token: csrf_token}, "POST", "_blank");
+	    		$.redirect(APP_URL+'/profile', {pers_no: node.pers_no, _token: csrf_token}, "POST", "_blank");
 	    	});
 	    }
     }
 
     function resetProfile(){
     	$('.profile-card dd').html('');
+        $('#nama').html('');
+        $('#jabatan').html('');
     	$('.profile-card img').attr('src','');
     	$('.profile-card a').attr('href','#');
         $('#jabatan').removeClass();
@@ -105,7 +111,7 @@ $(document).ready(function() {
 
     	console.log('Cari...');
 
-    	if($('#prev_per_no_cari').val()=='')
+    	if($('#prev_per_no_cari').val()=='' && prev_per_no=='')
     		$('#prev_per_no').val("");
 
 		var first_time = true;
@@ -194,8 +200,8 @@ $(document).ready(function() {
 
             $('#ftk').html(ftk.org_ltext+' '+ftk.real_ftk+' / '+ftk.pagu_ftk);
 
-	    	$('#collapseOne').collapse();
 	    	$('.profile-card').show();
+	    	$('#collapseOne').collapse();
 
 	    	setTimeout($.unblockUI, 500);
 
@@ -205,6 +211,7 @@ $(document).ready(function() {
 			    	console.log('pilih', pilih);
 			    	chart.ripple(parseInt(pilih.id));
 			    	populateProfile(pilih);
+	    			$('#collapseOne').collapse();
 			    	first_time = false;
 			    }
 
@@ -246,6 +253,9 @@ $(document).ready(function() {
 	    });
 
 	    $('#ko_2').change(function(){
+
+	    	prev_per_no = '';
+    		$('#prev_per_no').val('');
 
 		    $('#ko_3').empty()
 		    		.append('<option selected disabled>Pilih Organisasi II</option>');

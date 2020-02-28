@@ -12,7 +12,7 @@
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-primary badge-pill float-right">2</span> <span> Dashboard </span>
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ URL::to('/') }}/calendar" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Calendar </span></a>
                             </li>
 
@@ -26,7 +26,7 @@
                             </li>
                             <li>
                                 <a href="{{ URL::to('/') }}/profile" class="waves-effect"><i class="far fa-user"></i><span> Profile </span></a>
-                            </li>
+                            </li> --}}
 
                             @role('admin')
                             <li class="menu-title">Manajemen Users</li>

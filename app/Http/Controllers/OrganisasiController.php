@@ -92,9 +92,9 @@ class OrganisasiController extends Controller
         $bulan = substr($blth,0,2);
         $tahun = substr($blth,3,4);
 
-        $data = DB::select('select * from bso.sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?, ?, ?)', [$prev_per_no, $ko1, $ko2, $ko3, $ko4, $ko5, $fungsional, $tahun, $bulan]);
 
-        $ftk = DB::select("select * from bso.organisasi_ftk LIMIT 1");
+        $data = DB::select("select a.*, case when tags='kosong' then bso.get_tgl_mulai_kosong(a.pos_code) else null end tgl_mulai_kosong from bso.sp_organisasi_get_chart(?, ?, ?, ?, ?, ?, ?, ?, ?) a", [$prev_per_no, $ko1, $ko2, $ko3, $ko4, $ko5, $fungsional, $tahun, $bulan]);
+
 
         $pilih = $data[0];
         foreach ($data as $k => $v) {
@@ -107,6 +107,15 @@ class OrganisasiController extends Controller
                 $pilih = $v;
         }
 
-        return response()->json([$data, $pilih, $ftk[0]]);
+        if($prev_per_no==''){
+            $ftk = DB::select("select * from bso.vw_ftk where org_code IN (?, ?, ?, ?, ?) order by pagu_ftk LIMIT 1", [$ko1, $ko2, $ko3, $ko4, $ko5]);
+        }
+        else{
+            $ftk = DB::select("select * from bso.vw_ftk where org_code IN (?, ?, ?, ?, ?) order by pagu_ftk LIMIT 1", [$pilih->org1_code, $pilih->org2_code, $pilih->org3_code, $pilih->org4_code, $pilih->org5_code]);
+        }
+
+        $data_ftk = (count($ftk)>0)?$ftk[0]:null;
+
+        return response()->json([$data, $pilih, $data_ftk]);
     }
 }

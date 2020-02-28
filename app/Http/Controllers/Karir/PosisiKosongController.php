@@ -41,10 +41,11 @@ class PosisiKosongController extends Controller
     	$ko1 = $request->input('ko1');
     	$ko2 = $request->input('ko2');
     	$ko3 = $request->input('ko3');
-    	$ko4 = $request->input('ko4');
+        $ko4 = $request->input('ko4');
+    	$ko5 = $request->input('ko5');
     	$fungsional = ($request->input('fungsional')=='false')?'T':'Y';
 
-        $data = DB::select('call sp_karir_get_posisi_kosong(?, ?, ?, ?, ?)', [$ko1, $ko2, $ko3, $ko4, $fungsional]);
+        $data = DB::select('select * from sp_karir_get_posisi_kosong(?, ?, ?, ?, ?, ?)', [$ko1, $ko2, $ko3, $ko4, $ko5, $fungsional]);
 
         return response()->json((object) array('data' => $data));
     }
