@@ -390,7 +390,7 @@ input[type=checkbox].w3-check:disabled+.w3-validate,input[type=radio].w3-radio:d
     transform : rotate(45deg);
 }
 
-.comparePanle, .kandidatPanle{
+.comparePanle, .candidatePanle{
     position: fixed;
     bottom: 10px;
     width:60%;

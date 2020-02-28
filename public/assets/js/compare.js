@@ -4,7 +4,7 @@
 
     /* function to be executed when product is selected for comparision*/
     $(document).on('click', '.addToCandidate', function () {
-        $(".kandidatPanle").show();
+        $(".candidatePanle").show();
         $(this).toggleClass("rotateBtn");
         $(this).parents(".selectProduct").toggleClass("selected");
         var productID = $(this).parents('.selectProduct').attr('data-title');
@@ -17,7 +17,7 @@
             var displayTitle = $(this).parents('.selectProduct').attr('data-id');
 
             var image = $('[data-title=' + productID + ']').find(".productImg").attr('src');
-            $(".kandidatPan").append('<div id="' + productID + '" class="relPos titleMargin w3-margin-bottom   w3-col l3 m4 s4"><div class="w3-white titleMargin"><a class="selectedCandidateCloseBtn w3-closebtn cursor">&times</a><img src="' + image + '" alt="image" style="height:100px;"/><p id="' + productID + '" class="titleMargin1">' + displayTitle + '</p></div></div>');
+            $(".candidatePan").append('<div id="' + productID + '" class="relPos titleMargin w3-margin-bottom   w3-col l3 m4 s4"><div class="w3-white titleMargin"><a class="selectedCandidateCloseBtn w3-closebtn cursor">&times</a><img src="' + image + '" alt="image" style="height:100px;"/><p id="' + productID + '" class="titleMargin1">' + displayTitle + '</p></div></div>');
 
         } else {
             listCandidate.splice($.inArray(productID, listCandidate), 1);
@@ -127,6 +127,13 @@
         if (!list.length) {
             $(".comparePan").empty();
             $(".comparePanle").hide();
+        }
+    }
+
+    function hideCandidatePanel() {
+        if (!listCandidate.length) {
+            $(".candidatePan").empty();
+            $(".candidatePanle").hide();
         }
     }
 })(jQuery);

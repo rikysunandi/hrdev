@@ -98,7 +98,7 @@
                             <!--preview panel-->
                             <div class="w3-container  w3-center">
                                 <form class="form-horizontal m-t-30" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-                                    <div class="w3-row w3-card-4 w3-grey w3-round-large w3-border kandidatPanle w3-margin-top">
+                                    <div class="w3-row w3-card-4 w3-grey w3-round-large w3-border candidatePanle w3-margin-top">
                                         <div class="w3-row">
                                             <div class="w3-col l9 m8 s6 w3-margin-top">
                                                 <h4>Kandidat</h4>
@@ -108,7 +108,7 @@
                                                 <button type="submit" class="w3-btn w3-round-small w3-white w3-border">Simpan</button>
                                             </div>
                                         </div>
-                                        <div class=" titleMargin w3-container kandidatPan">
+                                        <div class=" titleMargin w3-container candidatePan">
                                         </div>
                                     </div>
                                 </form>
