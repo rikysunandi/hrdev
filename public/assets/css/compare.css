@@ -2,7 +2,7 @@
 *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
 td:nth-child(2){padding:0 5px}
-tr{border: 1px solid #999;border-right: none;border-left: 0;}
+tr{border: 1px solid #ddd;border-right: none;border-left: 0;}
 .w3-table-all{border:1px solid #ccc}
 .w3-profile-block{margin: 20px 10px; background: #f0f0f0;text-align: center;padding:10px}
 .w3-profile-table{padding: 20px 10px;font-size: 1em; text-align: center;}
