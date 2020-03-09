@@ -308,8 +308,8 @@ function($) {
             $('div#pensiun .inbox-wid').append( `
                 <a href="#" class="text-dark">
                     <div class="inbox-item">
-                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/photos/`+v.prev_per_no+`.jpg" class="thumb-md rounded-circle" alt=""></div>
-                        <h6 class="inbox-item-author mt-0 mb-1">`+v.personnel_number+`</h6>
+                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/photos/`+v.nip+`.jpg" class="thumb-md rounded-circle" alt=""></div>
+                        <h6 class="inbox-item-author mt-0 mb-1">`+v.nama_pegawai+`</h6>
                         <p class="inbox-item-text text-muted mb-0">`+v.personnel_subarea+`</p>
                         <p class="inbox-item-date text-muted">`+v.start_date+`</p>
                     </div>

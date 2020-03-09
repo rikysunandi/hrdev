@@ -11,6 +11,8 @@
         @else
             @include('layouts.head-dark')
         @endif
+
+            @include('layouts.head')
   </head>
 <body>
           <!-- Begin page -->
