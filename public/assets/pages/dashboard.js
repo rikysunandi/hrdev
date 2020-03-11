@@ -288,9 +288,9 @@ function($) {
             $('div#mutasi .inbox-wid').append( `
                 <a href="#" class="text-dark">
                     <div class="inbox-item">
-                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/photos/`+v.prev_per_no+`.jpg" class="thumb-md rounded-circle" alt=""></div>
-                        <h6 class="inbox-item-author mt-0 mb-1">`+v.personnel_number+`</h6>
-                        <p class="inbox-item-text text-muted mb-0">`+v.nama_panjang_posisi+' PADA '+v.personnel_subarea+`</p>
+                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/photos/`+v.nipeg+`.jpg" class="thumb-md rounded-circle" alt=""></div>
+                        <h6 class="inbox-item-author mt-0 mb-1">`+v.nama_pegawai+`</h6>
+                        <p class="inbox-item-text text-muted mb-0">`+v.position_lname+' - '+v.org2_sname+`</p>
                         <p class="inbox-item-date text-muted">`+v.start_date+`</p>
                     </div>
                 </a>
@@ -308,9 +308,9 @@ function($) {
             $('div#pensiun .inbox-wid').append( `
                 <a href="#" class="text-dark">
                     <div class="inbox-item">
-                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/photos/`+v.nip+`.jpg" class="thumb-md rounded-circle" alt=""></div>
+                        <div class="inbox-item-img float-left mr-3"><img src="../assets/images/photos/`+v.nipeg+`.jpg" class="thumb-md rounded-circle" alt=""></div>
                         <h6 class="inbox-item-author mt-0 mb-1">`+v.nama_pegawai+`</h6>
-                        <p class="inbox-item-text text-muted mb-0">`+v.personnel_subarea+`</p>
+                        <p class="inbox-item-text text-muted mb-0">`+v.pers_subarea_text+`</p>
                         <p class="inbox-item-date text-muted">`+v.start_date+`</p>
                     </div>
                 </a>

@@ -67,13 +67,13 @@ class HomeController extends Controller
 
 
     public function getMutasiTebaru(){
-        $newest_mutasi = DB::select('select * from vw_newest_mutasi order by start_date desc limit 10');
+        $newest_mutasi = DB::select('select * from vw_newest_mutasi where org2_code=\'15000001\' order by start_date desc limit 10');
         return response()->json($newest_mutasi);
 
     }
 
     public function getPensiunTebaru(){
-        $newest_pensiun = DB::select('select * from vw_newest_pensiun order by start_date desc limit 10');
+        $newest_pensiun = DB::select('select * from vw_newest_pensiun where personel_area=\'1000\' order by start_date desc limit 10');
         return response()->json($newest_pensiun);
 
     }

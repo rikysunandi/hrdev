@@ -16,7 +16,7 @@
                                             Welcome to HRDev Dashboard
                                         </li>
                                     </ol>
-                                    <div class="state-information d-none d-sm-block">
+                                    <div class="state-information d-none d-sm-block hidden">
                                         <div class="state-graph">
                                             <div id="header-chart-1"></div>
                                             <div class="info">Dummy 1</div>
