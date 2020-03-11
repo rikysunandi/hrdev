@@ -379,7 +379,7 @@
                             </div>
                         </div>
                         <!-- end row -->
-                        <div class="row">
+                   <!--      <div class="row">
                             <div class="col-xl-6">
                                 <div class="card m-b-20">
                                     <div class="card-body">
@@ -613,7 +613,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- end row -->
 
                     </div> <!-- container-fluid -->

@@ -290,7 +290,7 @@ function($) {
                     <div class="inbox-item">
                         <div class="inbox-item-img float-left mr-3"><img src="../assets/images/photos/`+v.nipeg+`.jpg" class="thumb-md rounded-circle" alt=""></div>
                         <h6 class="inbox-item-author mt-0 mb-1">`+v.nama_pegawai+`</h6>
-                        <p class="inbox-item-text text-muted mb-0">`+v.position_lname+' - '+v.org2_sname+`</p>
+                        <p class="inbox-item-text text-muted mb-0">`+v.position_sname+' - '+v.org2_sname+`</p>
                         <p class="inbox-item-date text-muted">`+v.start_date+`</p>
                     </div>
                 </a>
